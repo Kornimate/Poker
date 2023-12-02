@@ -37,6 +37,10 @@
             label1 = new Label();
             txtUserName = new TextBox();
             gameTable = new GroupBox();
+            player3TotalMoney = new Label();
+            player2TotalMoney = new Label();
+            player1TotalMoney = new Label();
+            userTotalMoney = new Label();
             btnExit = new Button();
             UserControls = new GroupBox();
             btnCall = new Button();
@@ -174,6 +178,10 @@
             // gameTable
             // 
             gameTable.BackColor = Color.Green;
+            gameTable.Controls.Add(player3TotalMoney);
+            gameTable.Controls.Add(player2TotalMoney);
+            gameTable.Controls.Add(player1TotalMoney);
+            gameTable.Controls.Add(userTotalMoney);
             gameTable.Controls.Add(btnExit);
             gameTable.Controls.Add(UserControls);
             gameTable.Controls.Add(player3BetMoney);
@@ -206,6 +214,50 @@
             gameTable.TabStop = false;
             gameTable.Text = "GameTable";
             gameTable.Visible = false;
+            // 
+            // player3TotalMoney
+            // 
+            player3TotalMoney.AutoSize = true;
+            player3TotalMoney.BackColor = SystemColors.Control;
+            player3TotalMoney.Location = new Point(83, 174);
+            player3TotalMoney.Name = "player3TotalMoney";
+            player3TotalMoney.Size = new Size(29, 20);
+            player3TotalMoney.TabIndex = 32;
+            player3TotalMoney.Text = "0 $";
+            player3TotalMoney.Visible = false;
+            // 
+            // player2TotalMoney
+            // 
+            player2TotalMoney.AutoSize = true;
+            player2TotalMoney.BackColor = SystemColors.Control;
+            player2TotalMoney.Location = new Point(494, 47);
+            player2TotalMoney.Name = "player2TotalMoney";
+            player2TotalMoney.Size = new Size(29, 20);
+            player2TotalMoney.TabIndex = 31;
+            player2TotalMoney.Text = "0 $";
+            player2TotalMoney.Visible = false;
+            // 
+            // player1TotalMoney
+            // 
+            player1TotalMoney.AutoSize = true;
+            player1TotalMoney.BackColor = SystemColors.Control;
+            player1TotalMoney.Location = new Point(750, 174);
+            player1TotalMoney.Name = "player1TotalMoney";
+            player1TotalMoney.Size = new Size(29, 20);
+            player1TotalMoney.TabIndex = 30;
+            player1TotalMoney.Text = "0 $";
+            player1TotalMoney.Visible = false;
+            // 
+            // userTotalMoney
+            // 
+            userTotalMoney.AutoSize = true;
+            userTotalMoney.BackColor = SystemColors.Control;
+            userTotalMoney.Location = new Point(329, 284);
+            userTotalMoney.Name = "userTotalMoney";
+            userTotalMoney.Size = new Size(29, 20);
+            userTotalMoney.TabIndex = 29;
+            userTotalMoney.Text = "0 $";
+            userTotalMoney.Visible = false;
             // 
             // btnExit
             // 
@@ -292,7 +344,7 @@
             // 
             player2BetMoney.AutoSize = true;
             player2BetMoney.BackColor = SystemColors.Control;
-            player2BetMoney.Location = new Point(483, 112);
+            player2BetMoney.Location = new Point(494, 113);
             player2BetMoney.Name = "player2BetMoney";
             player2BetMoney.Size = new Size(29, 20);
             player2BetMoney.TabIndex = 25;
@@ -319,6 +371,7 @@
             userBetMoney.Size = new Size(29, 20);
             userBetMoney.TabIndex = 23;
             userBetMoney.Text = "0 $";
+            userBetMoney.Visible = false;
             // 
             // river
             // 
@@ -373,9 +426,9 @@
             // player1Card2
             // 
             player1Card2.BackColor = SystemColors.Control;
-            player1Card2.Location = new Point(611, 180);
+            player1Card2.Location = new Point(600, 180);
             player1Card2.Name = "player1Card2";
-            player1Card2.Size = new Size(20, 33);
+            player1Card2.Size = new Size(30, 43);
             player1Card2.SizeMode = PictureBoxSizeMode.StretchImage;
             player1Card2.TabIndex = 17;
             player1Card2.TabStop = false;
@@ -384,9 +437,9 @@
             // player1Card1
             // 
             player1Card1.BackColor = SystemColors.Control;
-            player1Card1.Location = new Point(611, 141);
+            player1Card1.Location = new Point(600, 131);
             player1Card1.Name = "player1Card1";
-            player1Card1.Size = new Size(20, 33);
+            player1Card1.Size = new Size(30, 43);
             player1Card1.SizeMode = PictureBoxSizeMode.StretchImage;
             player1Card1.TabIndex = 16;
             player1Card1.TabStop = false;
@@ -397,7 +450,7 @@
             player3Card2.BackColor = SystemColors.Control;
             player3Card2.Location = new Point(243, 180);
             player3Card2.Name = "player3Card2";
-            player3Card2.Size = new Size(20, 33);
+            player3Card2.Size = new Size(30, 43);
             player3Card2.SizeMode = PictureBoxSizeMode.StretchImage;
             player3Card2.TabIndex = 15;
             player3Card2.TabStop = false;
@@ -406,9 +459,9 @@
             // player3Card1
             // 
             player3Card1.BackColor = SystemColors.Control;
-            player3Card1.Location = new Point(243, 141);
+            player3Card1.Location = new Point(243, 131);
             player3Card1.Name = "player3Card1";
-            player3Card1.Size = new Size(20, 33);
+            player3Card1.Size = new Size(30, 43);
             player3Card1.SizeMode = PictureBoxSizeMode.StretchImage;
             player3Card1.TabIndex = 14;
             player3Card1.TabStop = false;
@@ -417,9 +470,9 @@
             // player2Card2
             // 
             player2Card2.BackColor = SystemColors.Control;
-            player2Card2.Location = new Point(433, 103);
+            player2Card2.Location = new Point(447, 103);
             player2Card2.Name = "player2Card2";
-            player2Card2.Size = new Size(20, 33);
+            player2Card2.Size = new Size(30, 43);
             player2Card2.SizeMode = PictureBoxSizeMode.StretchImage;
             player2Card2.TabIndex = 13;
             player2Card2.TabStop = false;
@@ -429,7 +482,7 @@
             player2Card1.BackColor = SystemColors.Control;
             player2Card1.Location = new Point(411, 103);
             player2Card1.Name = "player2Card1";
-            player2Card1.Size = new Size(20, 33);
+            player2Card1.Size = new Size(30, 43);
             player2Card1.SizeMode = PictureBoxSizeMode.StretchImage;
             player2Card1.TabIndex = 12;
             player2Card1.TabStop = false;
@@ -591,5 +644,9 @@
         private Label player1BetMoney;
         private GroupBox UserControls;
         private Button btnExit;
+        private Label player2TotalMoney;
+        private Label player1TotalMoney;
+        private Label userTotalMoney;
+        private Label player3TotalMoney;
     }
 }

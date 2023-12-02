@@ -8,19 +8,21 @@ namespace Model
 {
     public class PokerModel
     {
-        private List<Player>? players;
-        private Deck? deck;
-        private bool endOfGame;
-        private List<Card>? sharedCards;
-        private int numOfCardsRevealed;
-        private int smallBlind;
+        public List<Player>? players;
+        public Deck? deck;
+        public bool endOfGame;
+        public List<Card>? sharedCards;
+        public int numOfCardsRevealed;
+        public int smallBlind;
 
         public event EventHandler? Flop;
         public event EventHandler? Turn;
         public event EventHandler? River;
         public event EventHandler? GameEnd;
         public event EventHandler? UserChoose;
+        public event EventHandler? RoundEnded;
         public event EventHandler<int>? UpdatePlayer;
+        public event EventHandler<int>? RevealPlayerCards;
 
         public PokerModel(string playerName, int numOfPlayers)
         {
@@ -31,21 +33,36 @@ namespace Model
         {
             players = new List<Player>()
             {
-                new Player(playerName, false,0)
+                new Player(playerName, false,0),
+                new Player($"Bot_{2}", true, 2)
             };
-            for (int i = 1; i < numOfPlayers; i++)
+            if (numOfPlayers == 4)
             {
-                players.Add(new Player($"Bot_{i}", true, i));
+                players.Add(new Player($"Bot_{1}", true, 1));
+                players.Add(new Player($"Bot_{3}", true, 3));
+                players = players.OrderBy(x => x.Number).ToList();
             }
             deck = new Deck();
             foreach (Player p in players)
             {
-                p.GetCard(deck.Draw());
+                p.GetCardFromDeck(deck.Draw());
+                p.GetCardFromDeck(deck.Draw());
             }
             sharedCards = Enumerable.Range(0, 5).Select(x => deck.Draw()).ToList()!;
             numOfCardsRevealed = 2;
             smallBlind = 0;
             Round();
+        }
+
+        public void Testing()
+        {
+            foreach (Player p in players!)
+            {
+                RevealPlayerCards?.Invoke(this, p.Number);
+            }
+            Flop?.Invoke(this, EventArgs.Empty);
+            Turn?.Invoke(this, EventArgs.Empty);
+            River?.Invoke(this, EventArgs.Empty);
         }
 
         private void Round()
@@ -81,14 +98,14 @@ namespace Model
             bool changed = false;
             while (curr != target)
             {
-                if(target == smallBlind-1 && !changed)
+                if (target == smallBlind - 1 && !changed)
                 {
                     target = smallBlind;
                 }
                 if (players![curr].IsBot)
                 {
                     PokerAction action = players![curr].ChooseAction();
-                    if(action == PokerAction.Raise)
+                    if (action == PokerAction.Raise)
                     {
                         target = curr;
                         changed = true;

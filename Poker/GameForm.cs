@@ -1,4 +1,5 @@
 using Model;
+using System.Numerics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Poker
@@ -8,9 +9,11 @@ namespace Poker
         private PokerModel? model;
         private List<PlayerUI>? players;
         private List<PictureBox>? sharedCards;
+        private readonly Bitmap? CardBack;
         public GameForm()
         {
             InitializeComponent();
+            CardBack = Properties.Resources.cardBack;
         }
 
         private void btnCall_Click(object sender, EventArgs e)
@@ -49,37 +52,108 @@ namespace Poker
         {
             gameDetails.Visible = false;
             gameDetails.Enabled = false;
-            model = new PokerModel(username, numOfPlayers);
-            gameTable.Enabled = true;
-            gameTable.Visible = true;
+
             lblUserName.Text = username;
+
             players = new List<PlayerUI>()
             {
-                new PlayerUI(userImage, userBetMoney, userCard1, userCard2,"U"),
-                new PlayerUI(player2Image, player2BetMoney, player2Card1, player2Card2,"2")
+                new PlayerUI(userImage, userBetMoney, userCard1, userCard2,userTotalMoney,0),
+                new PlayerUI(player2Image, player2BetMoney, player2Card1, player2Card2,player2TotalMoney,2)
             };
+
             if (numOfPlayers == 4)
             {
-                players.Add(new PlayerUI(player1Image, player1BetMoney, player1Card1, player1Card2, "1"));
-                players.Add(new PlayerUI(player3Image, player3BetMoney, player3Card1, player3Card2, "3"));
+                players.Add(new PlayerUI(player1Image, player1BetMoney, player1Card1, player1Card2, player1TotalMoney, 1));
+                players.Add(new PlayerUI(player3Image, player3BetMoney, player3Card1, player3Card2, player3TotalMoney, 3));
             }
+
             sharedCards = new List<PictureBox>
             {
                 flop1,flop2,flop3,turn,river
             };
+
             players.ForEach(p =>
             {
                 p.Card1.Visible = true;
-                p.Card1.Image = Properties.Resources.cardBack;
+                p.Card1.Image = CardBack;
                 p.Card2.Visible = true;
-                p.Card2.Image = Properties.Resources.cardBack;
+                p.Card2.Image = CardBack;
                 p.Money.Visible = true;
                 p.Image.Visible = true;
+                p.TotalMoney.Visible = true;
+                p.Money.Visible = true;
             });
+
             sharedCards.ForEach(s =>
             {
                 s.Image = Properties.Resources.cardBack;
             });
+
+            model = new PokerModel(username, numOfPlayers);
+
+            model.UpdatePlayer += UpdatePlayer;
+            model.RoundEnded += RoundEnded;
+            model.RevealPlayerCards += RevealPlayerCards;
+            model.Flop += Flop;
+            model.Turn += Turn;
+            model.River += River;
+
+            model.Testing();
+
+            gameTable.Enabled = true;
+            gameTable.Visible = true;
+            //Thread.Sleep(1000);
+        }
+
+        private void Turn(object? sender, EventArgs e)
+        {
+            sharedCards![3].Image = cards[new Tuple<PokerColor, PokerValue>(model!.sharedCards![3]!.Color, model.sharedCards[3]!.Value)];
+        }
+
+        private void River(object? sender, EventArgs e)
+        {
+            sharedCards![4].Image = cards[new Tuple<PokerColor, PokerValue>(model!.sharedCards![4]!.Color, model.sharedCards[4]!.Value)];
+        }
+
+        private void Flop(object? sender, EventArgs e)
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                sharedCards![i].Image = cards[new Tuple<PokerColor, PokerValue>(model!.sharedCards![i]!.Color, model.sharedCards[i]!.Value)];
+            }
+        }
+
+        private void RevealPlayerCards(object? sender, int e)
+        {
+            PlayerUI playerUI = players!.Find(x => x.Key == e)!;
+            Player player = model!.players!.Find(x => x.Number == e)!;
+            playerUI.Card1.Image = cards[new Tuple<PokerColor, PokerValue>(player.Cards[0]!.Color, player.Cards[0]!.Value)];
+            playerUI.Card2.Image = cards[new Tuple<PokerColor, PokerValue>(player.Cards[1]!.Color, player.Cards[1]!.Value)];
+        }
+
+        private void RoundEnded(object? sender, EventArgs e)
+        {
+            players!.ForEach(p =>
+            {
+                p.TotalMoney.Text = FormatMoney(model!.players!.Find(x => x.Number == p.Key)!.Money);
+                p.Card1.Image = CardBack;
+                p.Card2.Image = CardBack;
+                p.Money.Text = FormatMoney(0);
+            });
+            //Thread.Sleep(1000);
+        }
+
+        private void UpdatePlayer(object? sender, int e)
+        {
+            PlayerUI playerUI = players!.Find(x => x.Key == e)!;
+            Player player = model!.players!.Find(x => x.Number == e)!;
+            playerUI.TotalMoney.Text = FormatMoney(player.Money);
+            //TODO: needs extra settings
+        }
+
+        private string FormatMoney(int money)
+        {
+            return $"{money} $";
         }
 
         private void EndGameUI()
@@ -94,6 +168,8 @@ namespace Poker
                 p.Card2.Visible = false;
                 p.Money.Visible = false;
                 p.Image.Visible = false;
+                p.Money.Visible = false;
+                p.TotalMoney.Visible = false;
             });
         }
 
