@@ -9,7 +9,244 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\1280px-English_pattern_10_of_clubs.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_10_of_diamonds.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_10_of_hearts.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_10_of_spades.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_2_of_clubs.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_2_of_diamonds.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_2_of_hearts.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_2_of_spades.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_3_of_clubs.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_3_of_diamonds.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_3_of_hearts.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_3_of_spades.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_4_of_clubs.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_4_of_diamonds.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_4_of_hearts.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_4_of_spades.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_5_of_clubs.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_5_of_diamonds.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_5_of_hearts.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_5_of_spades.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_8_of_clubs.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_8_of_diamonds.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_8_of_hearts.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_8_of_spades.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_9_of_clubs.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_9_of_diamonds.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_9_of_hearts.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_9_of_spades.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_ace_of_clubs.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_ace_of_diamonds.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_ace_of_hearts.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_ace_of_spades.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_jack_of_clubs.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_jack_of_hearts.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_jack_of_spades.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_king_of_diamonds.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_king_of_hearts.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_king_of_spades.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_queen_of_clubs.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_queen_of_hearts.svg.png" />
+    <None Remove="Resources\1280px-English_pattern_queen_of_spades.svg.png" />
+    <None Remove="Resources\cardBack.png" />
+    <None Remove="Resources\English_pattern_6_of_clubs.svg.png" />
+    <None Remove="Resources\English_pattern_6_of_diamonds.svg.png" />
+    <None Remove="Resources\English_pattern_6_of_hearts.svg.png" />
+    <None Remove="Resources\English_pattern_6_of_spades.svg.png" />
+    <None Remove="Resources\English_pattern_7_of_clubs.svg.png" />
+    <None Remove="Resources\English_pattern_7_of_diamonds.svg.png" />
+    <None Remove="Resources\English_pattern_7_of_hearts.svg.png" />
+    <None Remove="Resources\English_pattern_7_of_spades.svg.png" />
+    <None Remove="Resources\English_pattern_jack_of_diamonds.svg.png" />
+    <None Remove="Resources\English_pattern_king_of_clubs.svg.png" />
+    <None Remove="Resources\English_pattern_queen_of_diamonds.svg.png" />
+    <None Remove="Resources\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\1280px-English_pattern_10_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_10_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_10_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_10_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_2_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_2_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_2_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_2_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_3_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_3_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_3_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_3_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_4_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_4_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_4_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_4_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_5_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_5_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_5_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_5_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_8_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_8_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_8_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_8_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_9_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_9_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_9_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_9_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_ace_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_ace_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_ace_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_ace_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_jack_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_jack_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_jack_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_king_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_king_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_king_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_queen_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_queen_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1280px-English_pattern_queen_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\cardBack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\English_pattern_6_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\English_pattern_6_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\English_pattern_6_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\English_pattern_6_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\English_pattern_7_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\English_pattern_7_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\English_pattern_7_of_hearts.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\English_pattern_7_of_spades.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\English_pattern_jack_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\English_pattern_king_of_clubs.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\English_pattern_queen_of_diamonds.svg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
