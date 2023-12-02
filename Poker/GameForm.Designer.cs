@@ -572,6 +572,8 @@
             Controls.Add(gameTable);
             Controls.Add(gameDetails);
             Controls.Add(statusStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "GameForm";
             Text = "GameForm";
             statusStrip1.ResumeLayout(false);
