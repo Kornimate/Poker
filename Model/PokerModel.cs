@@ -88,7 +88,7 @@ namespace Model
                 if (players![curr].IsBot)
                 {
                     PokerAction action = players![curr].ChooseAction();
-                    if(action == PokerAction.Raise || action == PokerAction.Bet)
+                    if(action == PokerAction.Raise)
                     {
                         target = curr;
                         changed = true;

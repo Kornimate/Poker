@@ -10,5 +10,5 @@ namespace Model
     public enum PokerValue { Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace }
     public enum PokerRating { HighCard, Pair, TwoPairs, ThreeOfAKind, Straight, Flush, Full, FourOfAKind, StraightFlush, RoyalFlush }
 
-    public enum PokerAction { Fold, Call, Raise, Bet, Check}
+    public enum PokerAction { Fold, Call, Raise, Check}
 }
