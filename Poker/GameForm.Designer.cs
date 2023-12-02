@@ -30,6 +30,7 @@
         {
             statusStrip1 = new StatusStrip();
             lblUserName = new ToolStripStatusLabel();
+            lblCardValue = new ToolStripStatusLabel();
             gameDetails = new GroupBox();
             nmPlayerNumber = new NumericUpDown();
             label2 = new Label();
@@ -99,7 +100,7 @@
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { lblUserName });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { lblUserName, lblCardValue });
             statusStrip1.Location = new Point(0, 495);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(904, 26);
@@ -111,6 +112,12 @@
             lblUserName.Name = "lblUserName";
             lblUserName.Size = new Size(93, 20);
             lblUserName.Text = "<username>";
+            // 
+            // lblCardValue
+            // 
+            lblCardValue.Name = "lblCardValue";
+            lblCardValue.Size = new Size(69, 20);
+            lblCardValue.Text = "No Value";
             // 
             // gameDetails
             // 
@@ -650,5 +657,6 @@
         private Label player1TotalMoney;
         private Label userTotalMoney;
         private Label player3TotalMoney;
+        private ToolStripStatusLabel lblCardValue;
     }
 }

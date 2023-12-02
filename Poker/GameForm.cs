@@ -54,6 +54,7 @@ namespace Poker
             gameDetails.Enabled = false;
 
             lblUserName.Text = username;
+            lblCardValue.Text = "No Value";
 
             players = new List<PlayerUI>()
             {
@@ -140,6 +141,7 @@ namespace Poker
                 p.Card2.Image = CardBack;
                 p.Money.Text = FormatMoney(0);
             });
+            lblCardValue.Text = "No Value";
             //Thread.Sleep(1000);
         }
 
