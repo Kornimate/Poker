@@ -8,9 +8,9 @@ namespace Model
 {
     public class Dealer
     {
-        public static Rating EvaluateCards(List<Card> cards)
+        public static PokerRating EvaluateCards(List<Card> cards)
         {
-            return Rating.HighCard;
+            return PokerRating.HighCard;
         }
     }
 }

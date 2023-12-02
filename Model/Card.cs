@@ -8,9 +8,9 @@ namespace Model
 {
     public class Card
     {
-        public Color Color { get; }
-        public Value Value { get; }
-        public Card(Color color, Value value)
+        public PokerColor Color { get; }
+        public PokerValue Value { get; }
+        public Card(PokerColor color, PokerValue value)
         {
             Color = color;
             Value = value;

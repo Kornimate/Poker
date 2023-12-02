@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            menuStrip1 = new MenuStrip();
-            startNewGameToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             groupBox1 = new GroupBox();
@@ -67,7 +65,6 @@
             player3 = new PictureBox();
             player1 = new PictureBox();
             user = new PictureBox();
-            menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -94,23 +91,6 @@
             ((System.ComponentModel.ISupportInitialize)user).BeginInit();
             SuspendLayout();
             // 
-            // menuStrip1
-            // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { startNewGameToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(904, 28);
-            menuStrip1.TabIndex = 2;
-            menuStrip1.Text = "menuStrip1";
-            // 
-            // startNewGameToolStripMenuItem
-            // 
-            startNewGameToolStripMenuItem.Name = "startNewGameToolStripMenuItem";
-            startNewGameToolStripMenuItem.Size = new Size(131, 24);
-            startNewGameToolStripMenuItem.Text = "Start New Game";
-            startNewGameToolStripMenuItem.Click += startNewGameToolStripMenuItem_Click;
-            // 
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
@@ -134,9 +114,9 @@
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(textBox2);
-            groupBox1.Location = new Point(24, 31);
+            groupBox1.Location = new Point(24, 21);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(868, 70);
+            groupBox1.Size = new Size(868, 73);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = "Game Details";
@@ -287,7 +267,7 @@
             // 
             player3BetMoney.AutoSize = true;
             player3BetMoney.BackColor = SystemColors.Control;
-            player3BetMoney.Location = new Point(265, 165);
+            player3BetMoney.Location = new Point(291, 174);
             player3BetMoney.Name = "player3BetMoney";
             player3BetMoney.Size = new Size(29, 20);
             player3BetMoney.TabIndex = 26;
@@ -325,105 +305,122 @@
             // 
             // river
             // 
+            river.BackColor = SystemColors.Control;
             river.Location = new Point(468, 165);
             river.Name = "river";
-            river.Size = new Size(16, 29);
+            river.Size = new Size(20, 33);
             river.TabIndex = 22;
             river.TabStop = false;
             // 
             // turn
             // 
+            turn.BackColor = SystemColors.Control;
             turn.Location = new Point(446, 165);
             turn.Name = "turn";
-            turn.Size = new Size(16, 29);
+            turn.Size = new Size(20, 33);
             turn.TabIndex = 21;
             turn.TabStop = false;
             // 
             // flop3
             // 
+            flop3.BackColor = SystemColors.Control;
             flop3.Location = new Point(424, 165);
             flop3.Name = "flop3";
-            flop3.Size = new Size(16, 29);
+            flop3.Size = new Size(20, 33);
             flop3.TabIndex = 20;
             flop3.TabStop = false;
             // 
             // flop2
             // 
+            flop2.BackColor = SystemColors.Control;
             flop2.Location = new Point(402, 165);
             flop2.Name = "flop2";
-            flop2.Size = new Size(16, 29);
+            flop2.Size = new Size(20, 33);
             flop2.TabIndex = 19;
             flop2.TabStop = false;
             // 
             // flop1
             // 
+            flop1.BackColor = SystemColors.Control;
             flop1.Location = new Point(380, 165);
             flop1.Name = "flop1";
-            flop1.Size = new Size(16, 29);
+            flop1.Size = new Size(20, 33);
             flop1.TabIndex = 18;
             flop1.TabStop = false;
             // 
             // player1Card2
             // 
+            player1Card2.BackColor = SystemColors.Control;
             player1Card2.Location = new Point(611, 180);
             player1Card2.Name = "player1Card2";
-            player1Card2.Size = new Size(16, 29);
+            player1Card2.Size = new Size(20, 33);
             player1Card2.TabIndex = 17;
             player1Card2.TabStop = false;
             // 
             // player1Card1
             // 
-            player1Card1.Location = new Point(611, 147);
+            player1Card1.BackColor = SystemColors.Control;
+            player1Card1.Location = new Point(611, 141);
             player1Card1.Name = "player1Card1";
-            player1Card1.Size = new Size(16, 29);
+            player1Card1.Size = new Size(20, 33);
             player1Card1.TabIndex = 16;
             player1Card1.TabStop = false;
             // 
             // player3Card2
             // 
+            player3Card2.BackColor = SystemColors.Control;
             player3Card2.Location = new Point(243, 180);
             player3Card2.Name = "player3Card2";
-            player3Card2.Size = new Size(16, 29);
+            player3Card2.Size = new Size(20, 33);
             player3Card2.TabIndex = 15;
             player3Card2.TabStop = false;
             // 
             // player3Card1
             // 
-            player3Card1.Location = new Point(243, 147);
+            player3Card1.BackColor = SystemColors.Control;
+            player3Card1.Location = new Point(243, 141);
             player3Card1.Name = "player3Card1";
-            player3Card1.Size = new Size(16, 29);
+            player3Card1.Size = new Size(20, 33);
+            player3Card1.SizeMode = PictureBoxSizeMode.StretchImage;
             player3Card1.TabIndex = 14;
             player3Card1.TabStop = false;
             // 
             // player2Card2
             // 
+            player2Card2.BackColor = SystemColors.Control;
             player2Card2.Location = new Point(433, 103);
             player2Card2.Name = "player2Card2";
-            player2Card2.Size = new Size(16, 29);
+            player2Card2.Size = new Size(20, 33);
             player2Card2.TabIndex = 13;
             player2Card2.TabStop = false;
             // 
             // player2Card1
             // 
+            player2Card1.BackColor = SystemColors.Control;
             player2Card1.Location = new Point(411, 103);
             player2Card1.Name = "player2Card1";
-            player2Card1.Size = new Size(16, 29);
+            player2Card1.Size = new Size(20, 33);
+            player2Card1.SizeMode = PictureBoxSizeMode.StretchImage;
             player2Card1.TabIndex = 12;
             player2Card1.TabStop = false;
             // 
             // userCard2
             // 
-            userCard2.Location = new Point(51, 307);
+            userCard2.BackColor = SystemColors.Control;
+            userCard2.Location = new Point(62, 301);
             userCard2.Name = "userCard2";
-            userCard2.Size = new Size(39, 62);
+            userCard2.Size = new Size(50, 73);
+            userCard2.SizeMode = PictureBoxSizeMode.StretchImage;
             userCard2.TabIndex = 6;
             userCard2.TabStop = false;
             // 
             // userCard1
             // 
-            userCard1.Location = new Point(6, 307);
+            userCard1.BackColor = SystemColors.Control;
+            userCard1.Location = new Point(6, 301);
             userCard1.Name = "userCard1";
-            userCard1.Size = new Size(39, 62);
+            userCard1.Size = new Size(50, 73);
+            userCard1.SizeMode = PictureBoxSizeMode.StretchImage;
             userCard1.TabIndex = 5;
             userCard1.TabStop = false;
             // 
@@ -438,38 +435,46 @@
             // 
             // player2
             // 
-            player2.BackColor = SystemColors.Control;
+            player2.BackColor = Color.Silver;
+            player2.Image = Properties.Resources.user;
             player2.Location = new Point(402, 26);
             player2.Name = "player2";
             player2.Size = new Size(57, 62);
+            player2.SizeMode = PictureBoxSizeMode.Zoom;
             player2.TabIndex = 3;
             player2.TabStop = false;
             // 
             // player3
             // 
-            player3.BackColor = SystemColors.Control;
+            player3.BackColor = Color.Silver;
+            player3.Image = Properties.Resources.user;
             player3.Location = new Point(164, 147);
             player3.Name = "player3";
             player3.Size = new Size(57, 62);
+            player3.SizeMode = PictureBoxSizeMode.Zoom;
             player3.TabIndex = 2;
             player3.TabStop = false;
             // 
             // player1
             // 
-            player1.BackColor = SystemColors.Control;
+            player1.BackColor = Color.Silver;
+            player1.Image = Properties.Resources.user;
             player1.Location = new Point(648, 147);
             player1.Name = "player1";
             player1.Size = new Size(57, 62);
+            player1.SizeMode = PictureBoxSizeMode.Zoom;
             player1.TabIndex = 1;
             player1.TabStop = false;
             // 
             // user
             // 
-            user.BackColor = SystemColors.Control;
+            user.BackColor = Color.Silver;
             user.BorderStyle = BorderStyle.FixedSingle;
+            user.Image = Properties.Resources.user;
             user.Location = new Point(402, 266);
             user.Name = "user";
             user.Size = new Size(57, 62);
+            user.SizeMode = PictureBoxSizeMode.Zoom;
             user.TabIndex = 0;
             user.TabStop = false;
             // 
@@ -481,12 +486,8 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(statusStrip1);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
             Name = "GameForm";
             Text = "GameForm";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             groupBox1.ResumeLayout(false);
@@ -519,8 +520,6 @@
         }
 
         #endregion
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem startNewGameToolStripMenuItem;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private GroupBox groupBox1;

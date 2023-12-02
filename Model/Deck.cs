@@ -14,9 +14,9 @@ namespace Model
         {
             cards = new List<Card>();
             counter = 0;
-            foreach(Color c in Enum.GetValues<Color>())
+            foreach(PokerColor c in Enum.GetValues<PokerColor>())
             {
-                foreach(Value v in Enum.GetValues<Value>())
+                foreach(PokerValue v in Enum.GetValues<PokerValue>())
                 {
                     cards.Add(new Card(c, v));
                 }
