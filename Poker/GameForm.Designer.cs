@@ -39,6 +39,8 @@
             label1 = new Label();
             txtUserName = new TextBox();
             gameTable = new GroupBox();
+            smallBlind = new Label();
+            sumMoneyOnTable = new Label();
             indicator = new Label();
             player3TotalMoney = new Label();
             player2TotalMoney = new Label();
@@ -74,7 +76,6 @@
             player1Image = new PictureBox();
             userImage = new PictureBox();
             gameTimer = new System.Windows.Forms.Timer(components);
-            sumMoneyOnTable = new Label();
             statusStrip1.SuspendLayout();
             gameDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmPlayerNumber).BeginInit();
@@ -197,6 +198,7 @@
             // gameTable
             // 
             gameTable.BackColor = Color.Green;
+            gameTable.Controls.Add(smallBlind);
             gameTable.Controls.Add(sumMoneyOnTable);
             gameTable.Controls.Add(indicator);
             gameTable.Controls.Add(player3TotalMoney);
@@ -238,6 +240,29 @@
             gameTable.Text = "GameTable";
             gameTable.Visible = false;
             // 
+            // smallBlind
+            // 
+            smallBlind.AutoSize = true;
+            smallBlind.BackColor = Color.DeepSkyBlue;
+            smallBlind.Location = new Point(568, 413);
+            smallBlind.Margin = new Padding(4, 0, 4, 0);
+            smallBlind.Name = "smallBlind";
+            smallBlind.Size = new Size(17, 25);
+            smallBlind.TabIndex = 35;
+            smallBlind.Text = " ";
+            // 
+            // sumMoneyOnTable
+            // 
+            sumMoneyOnTable.AutoSize = true;
+            sumMoneyOnTable.BackColor = SystemColors.Control;
+            sumMoneyOnTable.Location = new Point(464, 254);
+            sumMoneyOnTable.Margin = new Padding(4, 0, 4, 0);
+            sumMoneyOnTable.Name = "sumMoneyOnTable";
+            sumMoneyOnTable.Size = new Size(37, 25);
+            sumMoneyOnTable.TabIndex = 34;
+            sumMoneyOnTable.Text = "0 $";
+            sumMoneyOnTable.Visible = false;
+            // 
             // indicator
             // 
             indicator.AutoSize = true;
@@ -246,7 +271,7 @@
             indicator.Margin = new Padding(4, 0, 4, 0);
             indicator.Name = "indicator";
             indicator.Size = new Size(17, 25);
-            indicator.TabIndex = 33;
+            indicator.TabIndex = 40;
             indicator.Text = " ";
             // 
             // player3TotalMoney
@@ -637,18 +662,6 @@
             // 
             gameTimer.Interval = 200;
             // 
-            // sumMoneyOnTable
-            // 
-            sumMoneyOnTable.AutoSize = true;
-            sumMoneyOnTable.BackColor = SystemColors.Control;
-            sumMoneyOnTable.Location = new Point(464, 254);
-            sumMoneyOnTable.Margin = new Padding(4, 0, 4, 0);
-            sumMoneyOnTable.Name = "sumMoneyOnTable";
-            sumMoneyOnTable.Size = new Size(37, 25);
-            sumMoneyOnTable.TabIndex = 34;
-            sumMoneyOnTable.Text = "0 $";
-            sumMoneyOnTable.Visible = false;
-            // 
             // GameForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -740,5 +753,6 @@
         private Label indicator;
         public System.Windows.Forms.Timer gameTimer;
         private Label sumMoneyOnTable;
+        private Label smallBlind;
     }
 }

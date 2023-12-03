@@ -123,6 +123,7 @@ namespace Poker
             model.RevealPlayerCards += RevealPlayerCards;
             model.FoldPlayerCards += FoldPlayerCards;
             model.CurrentPlayerIndicator += CurrentPlayerIncidator;
+            model.SmallBlindIndicator += SmallBlindIndicator;
             model.StartingProcedureEnded += StartingProcedureEnded;
             model.EnableTimer += EnableTimer;
             model.DisableTimer += DisableTimer;
@@ -137,6 +138,12 @@ namespace Poker
 
             gameTable.Enabled = true;
             gameTable.Visible = true;
+        }
+
+        private void SmallBlindIndicator(object? sender, int e)
+        {
+            PlayerUI playerUI = players!.Find(x => x.Key == e)!;
+            smallBlind.Location = new Point(playerUI.X+5, playerUI.Y+5);
         }
 
         private void FoldPlayerCards(object? sender, int e)

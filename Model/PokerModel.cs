@@ -35,6 +35,7 @@ namespace Model
         public event EventHandler<int>? RevealPlayerCards;
         public event EventHandler<int>? FoldPlayerCards;
         public event EventHandler<int>? CurrentPlayerIndicator;
+        public event EventHandler<int>? SmallBlindIndicator;
 
         public PokerModel()
         {
@@ -176,6 +177,7 @@ namespace Model
             numOfCardsRevealed = 2;
             sumMoneyOnTable = 0;
             IncrementSmallBlind();
+            SmallBlindIndicator?.Invoke(this, players![smallBlind].Number);
             target = smallBlind;
             current = smallBlind;
             StartingProcedureEnded?.Invoke(this, EventArgs.Empty);
