@@ -9,12 +9,14 @@ namespace Poker
     public class PlayerUI
     {
         public int Key { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
         public PictureBox Image { get; set; }
         public Label Money { get; set; }
         public PictureBox Card1 { get; set; }
         public PictureBox Card2 { get; set; }
         public Label TotalMoney { get; set; }
-        public PlayerUI(PictureBox image, Label money, PictureBox card1, PictureBox card2,Label totalMoney, int key)
+        public PlayerUI(PictureBox image, Label money, PictureBox card1, PictureBox card2,Label totalMoney, int key, int x, int y)
         {
             this.Image = image;
             this.Money = money;
@@ -22,6 +24,8 @@ namespace Poker
             this.Card2 = card2;
             this.TotalMoney = totalMoney;
             this.Key = key;
+            this.X = x;
+            this.Y = y;
         }
     }
 }

@@ -18,22 +18,34 @@ namespace Poker
 
         private void btnCall_Click(object sender, EventArgs e)
         {
-
+            model!.UserCall();
         }
 
         private void btnRaise_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                int raiseValue = (int)betAmount.Value;
+                if (raiseValue > model!.GetUserTotalMoney())
+                {
+                    throw new Exception("Not enough Money!");
+                }
+                    model!.UserRaise(raiseValue);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
-
+            model!.UserCheck();
         }
 
         private void btnFold_Click(object sender, EventArgs e)
         {
-
+            model!.UserFold();
         }
 
         private void startBtn_Click(object sender, EventArgs e)
@@ -58,14 +70,14 @@ namespace Poker
 
             players = new List<PlayerUI>()
             {
-                new PlayerUI(userImage, userBetMoney, userCard1, userCard2,userTotalMoney,0),
-                new PlayerUI(player2Image, player2BetMoney, player2Card1, player2Card2,player2TotalMoney,2)
+                new PlayerUI(userImage, userBetMoney, userCard1, userCard2,userTotalMoney,0,484,284),
+                new PlayerUI(player2Image, player2BetMoney, player2Card1, player2Card2,player2TotalMoney,2,380, 47)
             };
 
             if (numOfPlayers == 4)
             {
-                players.Add(new PlayerUI(player1Image, player1BetMoney, player1Card1, player1Card2, player1TotalMoney, 1));
-                players.Add(new PlayerUI(player3Image, player3BetMoney, player3Card1, player3Card2, player3TotalMoney, 3));
+                players.Add(new PlayerUI(player1Image, player1BetMoney, player1Card1, player1Card2, player1TotalMoney, 1, 661, 113));
+                players.Add(new PlayerUI(player3Image, player3BetMoney, player3Card1, player3Card2, player3TotalMoney, 3, 145, 174));
             }
 
             sharedCards = new List<PictureBox>
@@ -95,15 +107,34 @@ namespace Poker
             model.UpdatePlayer += UpdatePlayer;
             model.RoundEnded += RoundEnded;
             model.RevealPlayerCards += RevealPlayerCards;
+            model.CurrentPlayerIndicator += CurrentPlayerIncidator;
+            model.StartingProcedureEnded += StartingProcedureEnded;
+            model.UserChoose += UserChoose;
             model.Flop += Flop;
             model.Turn += Turn;
             model.River += River;
 
-            model.Testing();
+            //model.Testing();
 
             gameTable.Enabled = true;
             gameTable.Visible = true;
             //Thread.Sleep(1000);
+        }
+
+        private void StartingProcedureEnded(object? sender, EventArgs e)
+        {
+            model!.ShowUserCards();
+        }
+
+        private void CurrentPlayerIncidator(object? sender, int e)
+        {
+            PlayerUI playerUI = players!.Find(x => x.Key == e)!;
+            indicator.Location = new Point(playerUI.X, playerUI.Y);
+        }
+
+        private void UserChoose(object? sender, EventArgs e)
+        {
+            userControls.Enabled = true;
         }
 
         private void Turn(object? sender, EventArgs e)
@@ -118,7 +149,7 @@ namespace Poker
 
         private void Flop(object? sender, EventArgs e)
         {
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 sharedCards![i].Image = cards[new Tuple<PokerColor, PokerValue>(model!.sharedCards![i]!.Color, model.sharedCards[i]!.Value)];
             }
@@ -150,7 +181,7 @@ namespace Poker
             PlayerUI playerUI = players!.Find(x => x.Key == e)!;
             Player player = model!.players!.Find(x => x.Number == e)!;
             playerUI.TotalMoney.Text = FormatMoney(player.Money);
-            //TODO: needs extra settings
+            playerUI.Money.Text = FormatMoney(player.MoneyOnTable);
         }
 
         private string FormatMoney(int money)

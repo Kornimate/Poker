@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             statusStrip1 = new StatusStrip();
             lblUserName = new ToolStripStatusLabel();
             lblCardValue = new ToolStripStatusLabel();
@@ -38,12 +39,13 @@
             label1 = new Label();
             txtUserName = new TextBox();
             gameTable = new GroupBox();
+            indicator = new Label();
             player3TotalMoney = new Label();
             player2TotalMoney = new Label();
             player1TotalMoney = new Label();
             userTotalMoney = new Label();
             btnExit = new Button();
-            UserControls = new GroupBox();
+            userControls = new GroupBox();
             btnCall = new Button();
             btnFold = new Button();
             btnRaise = new Button();
@@ -71,11 +73,12 @@
             player3Image = new PictureBox();
             player1Image = new PictureBox();
             userImage = new PictureBox();
+            gameTimer = new System.Windows.Forms.Timer(components);
             statusStrip1.SuspendLayout();
             gameDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmPlayerNumber).BeginInit();
             gameTable.SuspendLayout();
-            UserControls.SuspendLayout();
+            userControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)betAmount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)river).BeginInit();
             ((System.ComponentModel.ISupportInitialize)turn).BeginInit();
@@ -185,12 +188,13 @@
             // gameTable
             // 
             gameTable.BackColor = Color.Green;
+            gameTable.Controls.Add(indicator);
             gameTable.Controls.Add(player3TotalMoney);
             gameTable.Controls.Add(player2TotalMoney);
             gameTable.Controls.Add(player1TotalMoney);
             gameTable.Controls.Add(userTotalMoney);
             gameTable.Controls.Add(btnExit);
-            gameTable.Controls.Add(UserControls);
+            gameTable.Controls.Add(userControls);
             gameTable.Controls.Add(player3BetMoney);
             gameTable.Controls.Add(player2BetMoney);
             gameTable.Controls.Add(player1BetMoney);
@@ -221,6 +225,16 @@
             gameTable.TabStop = false;
             gameTable.Text = "GameTable";
             gameTable.Visible = false;
+            // 
+            // indicator
+            // 
+            indicator.AutoSize = true;
+            indicator.BackColor = Color.Red;
+            indicator.Location = new Point(484, 284);
+            indicator.Name = "indicator";
+            indicator.Size = new Size(13, 20);
+            indicator.TabIndex = 33;
+            indicator.Text = " ";
             // 
             // player3TotalMoney
             // 
@@ -276,18 +290,19 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
             // 
-            // UserControls
+            // userControls
             // 
-            UserControls.Controls.Add(btnCall);
-            UserControls.Controls.Add(btnFold);
-            UserControls.Controls.Add(btnRaise);
-            UserControls.Controls.Add(betAmount);
-            UserControls.Controls.Add(btnCheck);
-            UserControls.Location = new Point(555, 284);
-            UserControls.Name = "UserControls";
-            UserControls.Size = new Size(305, 90);
-            UserControls.TabIndex = 27;
-            UserControls.TabStop = false;
+            userControls.Controls.Add(btnCall);
+            userControls.Controls.Add(btnFold);
+            userControls.Controls.Add(btnRaise);
+            userControls.Controls.Add(betAmount);
+            userControls.Controls.Add(btnCheck);
+            userControls.Enabled = false;
+            userControls.Location = new Point(555, 284);
+            userControls.Name = "userControls";
+            userControls.Size = new Size(305, 90);
+            userControls.TabIndex = 27;
+            userControls.TabStop = false;
             // 
             // btnCall
             // 
@@ -571,6 +586,10 @@
             userImage.TabIndex = 0;
             userImage.TabStop = false;
             // 
+            // gameTimer
+            // 
+            gameTimer.Interval = 200;
+            // 
             // GameForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -590,7 +609,7 @@
             ((System.ComponentModel.ISupportInitialize)nmPlayerNumber).EndInit();
             gameTable.ResumeLayout(false);
             gameTable.PerformLayout();
-            UserControls.ResumeLayout(false);
+            userControls.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)betAmount).EndInit();
             ((System.ComponentModel.ISupportInitialize)river).EndInit();
             ((System.ComponentModel.ISupportInitialize)turn).EndInit();
@@ -651,12 +670,14 @@
         private Label player3BetMoney;
         private Label player2BetMoney;
         private Label player1BetMoney;
-        private GroupBox UserControls;
+        private GroupBox userControls;
         private Button btnExit;
         private Label player2TotalMoney;
         private Label player1TotalMoney;
         private Label userTotalMoney;
         private Label player3TotalMoney;
         private ToolStripStatusLabel lblCardValue;
+        private Label indicator;
+        public System.Windows.Forms.Timer gameTimer;
     }
 }
