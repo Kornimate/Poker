@@ -10,10 +10,13 @@ namespace Poker
         private List<PlayerUI>? players;
         private List<PictureBox>? sharedCards;
         private readonly Bitmap? CardBack;
+
+        private const int WAITTIME = 200;
         public GameForm()
         {
             InitializeComponent();
             CardBack = Properties.Resources.cardBack;
+            gameTimer.Interval= WAITTIME;
             gameTimer.Enabled = false;
             gameTimer.Tick += NextPlayer;
         }
@@ -25,6 +28,7 @@ namespace Poker
 
         private void btnCall_Click(object sender, EventArgs e)
         {
+            userControls.Enabled = false;
             model!.UserCall();
         }
 
@@ -37,6 +41,7 @@ namespace Poker
                 {
                     throw new Exception("Not enough Money!");
                 }
+                userControls.Enabled = false;
                 model!.UserRaise(raiseValue);
             }
             catch (Exception ex)
@@ -47,11 +52,13 @@ namespace Poker
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
+            userControls.Enabled = false;
             model!.UserCheck();
         }
 
         private void btnFold_Click(object sender, EventArgs e)
         {
+            userControls.Enabled = false;
             model!.UserFold();
         }
 
@@ -109,11 +116,11 @@ namespace Poker
                 s.Image = Properties.Resources.cardBack;
             });
 
-            model = new PokerModel(username, numOfPlayers);
+            model = new PokerModel();
 
             model.UpdatePlayer += UpdatePlayer;
             model.RoundEnded += RoundEnded;
-            model.FoldPlayerCards += RevealPlayerCards;
+            model.RevealPlayerCards += RevealPlayerCards;
             model.FoldPlayerCards += FoldPlayerCards;
             model.CurrentPlayerIndicator += CurrentPlayerIncidator;
             model.StartingProcedureEnded += StartingProcedureEnded;
@@ -130,7 +137,6 @@ namespace Poker
 
             gameTable.Enabled = true;
             gameTable.Visible = true;
-            //Thread.Sleep(1000);
         }
 
         private void FoldPlayerCards(object? sender, int e)
@@ -203,7 +209,6 @@ namespace Poker
                 p.Money.Text = FormatMoney(0);
             });
             lblCardValue.Text = "No Value";
-            //Thread.Sleep(1000);
         }
 
         private void UpdatePlayer(object? sender, int e)

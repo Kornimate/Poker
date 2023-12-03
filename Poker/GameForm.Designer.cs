@@ -74,6 +74,7 @@
             player1Image = new PictureBox();
             userImage = new PictureBox();
             gameTimer = new System.Windows.Forms.Timer(components);
+            sumMoneyOnTable = new Label();
             statusStrip1.SuspendLayout();
             gameDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmPlayerNumber).BeginInit();
@@ -196,6 +197,7 @@
             // gameTable
             // 
             gameTable.BackColor = Color.Green;
+            gameTable.Controls.Add(sumMoneyOnTable);
             gameTable.Controls.Add(indicator);
             gameTable.Controls.Add(player3TotalMoney);
             gameTable.Controls.Add(player2TotalMoney);
@@ -414,7 +416,7 @@
             // 
             userBetMoney.AutoSize = true;
             userBetMoney.BackColor = SystemColors.Control;
-            userBetMoney.Location = new Point(475, 276);
+            userBetMoney.Location = new Point(529, 292);
             userBetMoney.Margin = new Padding(4, 0, 4, 0);
             userBetMoney.Name = "userBetMoney";
             userBetMoney.Size = new Size(37, 25);
@@ -635,6 +637,18 @@
             // 
             gameTimer.Interval = 200;
             // 
+            // sumMoneyOnTable
+            // 
+            sumMoneyOnTable.AutoSize = true;
+            sumMoneyOnTable.BackColor = SystemColors.Control;
+            sumMoneyOnTable.Location = new Point(464, 254);
+            sumMoneyOnTable.Margin = new Padding(4, 0, 4, 0);
+            sumMoneyOnTable.Name = "sumMoneyOnTable";
+            sumMoneyOnTable.Size = new Size(37, 25);
+            sumMoneyOnTable.TabIndex = 34;
+            sumMoneyOnTable.Text = "0 $";
+            sumMoneyOnTable.Visible = false;
+            // 
             // GameForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -725,5 +739,6 @@
         private ToolStripStatusLabel lblCardValue;
         private Label indicator;
         public System.Windows.Forms.Timer gameTimer;
+        private Label sumMoneyOnTable;
     }
 }

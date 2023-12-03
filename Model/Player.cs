@@ -51,7 +51,7 @@ namespace Model
         {
             int amount = Dealer.EvaluateCards(this.Cards!) switch
             {
-                PokerRating.HighCard => 0,
+                PokerRating.HighCard => 1,
                 PokerRating.Pair => Math.Min(Money, (int)0.1 * Money),
                 PokerRating.TwoPairs => Math.Min(Money, (int)0.2 * Money),
                 PokerRating.ThreeOfAKind => Math.Min(Money, (int)0.3 * Money),
@@ -84,7 +84,7 @@ namespace Model
 
         internal void SetDefaultForRound()
         {
-            IsActive = true;
+            IsActive = Money > 0;
             MoneyOnTable = 0;
             Cards.Clear();
         }
