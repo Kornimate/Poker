@@ -104,22 +104,23 @@
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { lblUserName, lblCardValue });
-            statusStrip1.Location = new Point(0, 495);
+            statusStrip1.Location = new Point(0, 640);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(904, 26);
+            statusStrip1.Padding = new Padding(1, 0, 18, 0);
+            statusStrip1.Size = new Size(1139, 32);
             statusStrip1.TabIndex = 3;
             statusStrip1.Text = "statusStrip1";
             // 
             // lblUserName
             // 
             lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(93, 20);
+            lblUserName.Size = new Size(113, 25);
             lblUserName.Text = "<username>";
             // 
             // lblCardValue
             // 
             lblCardValue.Name = "lblCardValue";
-            lblCardValue.Size = new Size(69, 20);
+            lblCardValue.Size = new Size(83, 25);
             lblCardValue.Text = "No Value";
             // 
             // gameDetails
@@ -129,9 +130,11 @@
             gameDetails.Controls.Add(button1);
             gameDetails.Controls.Add(label1);
             gameDetails.Controls.Add(txtUserName);
-            gameDetails.Location = new Point(24, 21);
+            gameDetails.Location = new Point(30, 26);
+            gameDetails.Margin = new Padding(4);
             gameDetails.Name = "gameDetails";
-            gameDetails.Size = new Size(868, 73);
+            gameDetails.Padding = new Padding(4);
+            gameDetails.Size = new Size(1085, 91);
             gameDetails.TabIndex = 4;
             gameDetails.TabStop = false;
             gameDetails.Text = "Game Details";
@@ -139,12 +142,13 @@
             // nmPlayerNumber
             // 
             nmPlayerNumber.Increment = new decimal(new int[] { 2, 0, 0, 0 });
-            nmPlayerNumber.Location = new Point(555, 26);
+            nmPlayerNumber.Location = new Point(694, 32);
+            nmPlayerNumber.Margin = new Padding(4);
             nmPlayerNumber.Maximum = new decimal(new int[] { 4, 0, 0, 0 });
             nmPlayerNumber.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
             nmPlayerNumber.Name = "nmPlayerNumber";
             nmPlayerNumber.ReadOnly = true;
-            nmPlayerNumber.Size = new Size(189, 27);
+            nmPlayerNumber.Size = new Size(236, 31);
             nmPlayerNumber.TabIndex = 4;
             nmPlayerNumber.TextAlign = HorizontalAlignment.Center;
             nmPlayerNumber.Value = new decimal(new int[] { 2, 0, 0, 0 });
@@ -152,17 +156,19 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(402, 30);
+            label2.Location = new Point(502, 38);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(131, 20);
+            label2.Size = new Size(159, 25);
             label2.TabIndex = 3;
             label2.Text = "Number of Players";
             // 
             // button1
             // 
-            button1.Location = new Point(750, 25);
+            button1.Location = new Point(938, 31);
+            button1.Margin = new Padding(4);
             button1.Name = "button1";
-            button1.Size = new Size(112, 29);
+            button1.Size = new Size(140, 36);
             button1.TabIndex = 2;
             button1.Text = "Start Game";
             button1.UseVisualStyleBackColor = true;
@@ -171,17 +177,19 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(6, 29);
+            label1.Location = new Point(8, 36);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(75, 20);
+            label1.Size = new Size(91, 25);
             label1.TabIndex = 1;
             label1.Text = "Username";
             // 
             // txtUserName
             // 
-            txtUserName.Location = new Point(99, 26);
+            txtUserName.Location = new Point(124, 32);
+            txtUserName.Margin = new Padding(4);
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(279, 27);
+            txtUserName.Size = new Size(348, 31);
             txtUserName.TabIndex = 0;
             txtUserName.Text = "Player01";
             // 
@@ -218,9 +226,11 @@
             gameTable.Controls.Add(player1Image);
             gameTable.Controls.Add(userImage);
             gameTable.Enabled = false;
-            gameTable.Location = new Point(24, 112);
+            gameTable.Location = new Point(30, 140);
+            gameTable.Margin = new Padding(4);
             gameTable.Name = "gameTable";
-            gameTable.Size = new Size(868, 380);
+            gameTable.Padding = new Padding(4);
+            gameTable.Size = new Size(1085, 475);
             gameTable.TabIndex = 5;
             gameTable.TabStop = false;
             gameTable.Text = "GameTable";
@@ -230,9 +240,10 @@
             // 
             indicator.AutoSize = true;
             indicator.BackColor = Color.Red;
-            indicator.Location = new Point(484, 284);
+            indicator.Location = new Point(605, 355);
+            indicator.Margin = new Padding(4, 0, 4, 0);
             indicator.Name = "indicator";
-            indicator.Size = new Size(13, 20);
+            indicator.Size = new Size(17, 25);
             indicator.TabIndex = 33;
             indicator.Text = " ";
             // 
@@ -240,9 +251,10 @@
             // 
             player3TotalMoney.AutoSize = true;
             player3TotalMoney.BackColor = SystemColors.Control;
-            player3TotalMoney.Location = new Point(83, 174);
+            player3TotalMoney.Location = new Point(104, 218);
+            player3TotalMoney.Margin = new Padding(4, 0, 4, 0);
             player3TotalMoney.Name = "player3TotalMoney";
-            player3TotalMoney.Size = new Size(29, 20);
+            player3TotalMoney.Size = new Size(37, 25);
             player3TotalMoney.TabIndex = 32;
             player3TotalMoney.Text = "0 $";
             player3TotalMoney.Visible = false;
@@ -251,9 +263,10 @@
             // 
             player2TotalMoney.AutoSize = true;
             player2TotalMoney.BackColor = SystemColors.Control;
-            player2TotalMoney.Location = new Point(494, 47);
+            player2TotalMoney.Location = new Point(618, 59);
+            player2TotalMoney.Margin = new Padding(4, 0, 4, 0);
             player2TotalMoney.Name = "player2TotalMoney";
-            player2TotalMoney.Size = new Size(29, 20);
+            player2TotalMoney.Size = new Size(37, 25);
             player2TotalMoney.TabIndex = 31;
             player2TotalMoney.Text = "0 $";
             player2TotalMoney.Visible = false;
@@ -262,9 +275,10 @@
             // 
             player1TotalMoney.AutoSize = true;
             player1TotalMoney.BackColor = SystemColors.Control;
-            player1TotalMoney.Location = new Point(750, 174);
+            player1TotalMoney.Location = new Point(938, 218);
+            player1TotalMoney.Margin = new Padding(4, 0, 4, 0);
             player1TotalMoney.Name = "player1TotalMoney";
-            player1TotalMoney.Size = new Size(29, 20);
+            player1TotalMoney.Size = new Size(37, 25);
             player1TotalMoney.TabIndex = 30;
             player1TotalMoney.Text = "0 $";
             player1TotalMoney.Visible = false;
@@ -273,18 +287,20 @@
             // 
             userTotalMoney.AutoSize = true;
             userTotalMoney.BackColor = SystemColors.Control;
-            userTotalMoney.Location = new Point(329, 284);
+            userTotalMoney.Location = new Point(411, 355);
+            userTotalMoney.Margin = new Padding(4, 0, 4, 0);
             userTotalMoney.Name = "userTotalMoney";
-            userTotalMoney.Size = new Size(29, 20);
+            userTotalMoney.Size = new Size(37, 25);
             userTotalMoney.TabIndex = 29;
             userTotalMoney.Text = "0 $";
             userTotalMoney.Visible = false;
             // 
             // btnExit
             // 
-            btnExit.Location = new Point(826, 26);
+            btnExit.Location = new Point(1032, 32);
+            btnExit.Margin = new Padding(4);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(28, 29);
+            btnExit.Size = new Size(35, 36);
             btnExit.TabIndex = 28;
             btnExit.Text = "X";
             btnExit.UseVisualStyleBackColor = true;
@@ -298,17 +314,20 @@
             userControls.Controls.Add(betAmount);
             userControls.Controls.Add(btnCheck);
             userControls.Enabled = false;
-            userControls.Location = new Point(555, 284);
+            userControls.Location = new Point(694, 355);
+            userControls.Margin = new Padding(4);
             userControls.Name = "userControls";
-            userControls.Size = new Size(305, 90);
+            userControls.Padding = new Padding(4);
+            userControls.Size = new Size(381, 112);
             userControls.TabIndex = 27;
             userControls.TabStop = false;
             // 
             // btnCall
             // 
-            btnCall.Location = new Point(6, 17);
+            btnCall.Location = new Point(8, 21);
+            btnCall.Margin = new Padding(4);
             btnCall.Name = "btnCall";
-            btnCall.Size = new Size(94, 29);
+            btnCall.Size = new Size(118, 36);
             btnCall.TabIndex = 7;
             btnCall.Text = "Call";
             btnCall.UseVisualStyleBackColor = true;
@@ -316,9 +335,10 @@
             // 
             // btnFold
             // 
-            btnFold.Location = new Point(6, 54);
+            btnFold.Location = new Point(8, 68);
+            btnFold.Margin = new Padding(4);
             btnFold.Name = "btnFold";
-            btnFold.Size = new Size(94, 29);
+            btnFold.Size = new Size(118, 36);
             btnFold.TabIndex = 9;
             btnFold.Text = "Fold";
             btnFold.UseVisualStyleBackColor = true;
@@ -326,9 +346,10 @@
             // 
             // btnRaise
             // 
-            btnRaise.Location = new Point(106, 17);
+            btnRaise.Location = new Point(132, 21);
+            btnRaise.Margin = new Padding(4);
             btnRaise.Name = "btnRaise";
-            btnRaise.Size = new Size(93, 29);
+            btnRaise.Size = new Size(116, 36);
             btnRaise.TabIndex = 8;
             btnRaise.Text = "Raise";
             btnRaise.UseVisualStyleBackColor = true;
@@ -336,16 +357,18 @@
             // 
             // betAmount
             // 
-            betAmount.Location = new Point(106, 56);
+            betAmount.Location = new Point(132, 70);
+            betAmount.Margin = new Padding(4);
             betAmount.Name = "betAmount";
-            betAmount.Size = new Size(93, 27);
+            betAmount.Size = new Size(116, 31);
             betAmount.TabIndex = 10;
             // 
             // btnCheck
             // 
-            btnCheck.Location = new Point(205, 17);
+            btnCheck.Location = new Point(256, 21);
+            btnCheck.Margin = new Padding(4);
             btnCheck.Name = "btnCheck";
-            btnCheck.Size = new Size(94, 66);
+            btnCheck.Size = new Size(118, 82);
             btnCheck.TabIndex = 11;
             btnCheck.Text = "Check";
             btnCheck.UseVisualStyleBackColor = true;
@@ -355,9 +378,10 @@
             // 
             player3BetMoney.AutoSize = true;
             player3BetMoney.BackColor = SystemColors.Control;
-            player3BetMoney.Location = new Point(291, 174);
+            player3BetMoney.Location = new Point(364, 218);
+            player3BetMoney.Margin = new Padding(4, 0, 4, 0);
             player3BetMoney.Name = "player3BetMoney";
-            player3BetMoney.Size = new Size(29, 20);
+            player3BetMoney.Size = new Size(37, 25);
             player3BetMoney.TabIndex = 26;
             player3BetMoney.Text = "0 $";
             player3BetMoney.Visible = false;
@@ -366,9 +390,10 @@
             // 
             player2BetMoney.AutoSize = true;
             player2BetMoney.BackColor = SystemColors.Control;
-            player2BetMoney.Location = new Point(494, 113);
+            player2BetMoney.Location = new Point(618, 141);
+            player2BetMoney.Margin = new Padding(4, 0, 4, 0);
             player2BetMoney.Name = "player2BetMoney";
-            player2BetMoney.Size = new Size(29, 20);
+            player2BetMoney.Size = new Size(37, 25);
             player2BetMoney.TabIndex = 25;
             player2BetMoney.Text = "0 $";
             player2BetMoney.Visible = false;
@@ -377,9 +402,10 @@
             // 
             player1BetMoney.AutoSize = true;
             player1BetMoney.BackColor = SystemColors.Control;
-            player1BetMoney.Location = new Point(542, 174);
+            player1BetMoney.Location = new Point(678, 218);
+            player1BetMoney.Margin = new Padding(4, 0, 4, 0);
             player1BetMoney.Name = "player1BetMoney";
-            player1BetMoney.Size = new Size(29, 20);
+            player1BetMoney.Size = new Size(37, 25);
             player1BetMoney.TabIndex = 24;
             player1BetMoney.Text = "0 $";
             player1BetMoney.Visible = false;
@@ -388,9 +414,10 @@
             // 
             userBetMoney.AutoSize = true;
             userBetMoney.BackColor = SystemColors.Control;
-            userBetMoney.Location = new Point(380, 221);
+            userBetMoney.Location = new Point(475, 276);
+            userBetMoney.Margin = new Padding(4, 0, 4, 0);
             userBetMoney.Name = "userBetMoney";
-            userBetMoney.Size = new Size(29, 20);
+            userBetMoney.Size = new Size(37, 25);
             userBetMoney.TabIndex = 23;
             userBetMoney.Text = "0 $";
             userBetMoney.Visible = false;
@@ -398,9 +425,10 @@
             // river
             // 
             river.BackColor = SystemColors.Control;
-            river.Location = new Point(503, 155);
+            river.Location = new Point(629, 194);
+            river.Margin = new Padding(4);
             river.Name = "river";
-            river.Size = new Size(30, 43);
+            river.Size = new Size(38, 54);
             river.SizeMode = PictureBoxSizeMode.StretchImage;
             river.TabIndex = 22;
             river.TabStop = false;
@@ -408,9 +436,10 @@
             // turn
             // 
             turn.BackColor = SystemColors.Control;
-            turn.Location = new Point(467, 155);
+            turn.Location = new Point(584, 194);
+            turn.Margin = new Padding(4);
             turn.Name = "turn";
-            turn.Size = new Size(30, 43);
+            turn.Size = new Size(38, 54);
             turn.SizeMode = PictureBoxSizeMode.StretchImage;
             turn.TabIndex = 21;
             turn.TabStop = false;
@@ -418,9 +447,10 @@
             // flop3
             // 
             flop3.BackColor = SystemColors.Control;
-            flop3.Location = new Point(423, 155);
+            flop3.Location = new Point(529, 194);
+            flop3.Margin = new Padding(4);
             flop3.Name = "flop3";
-            flop3.Size = new Size(30, 43);
+            flop3.Size = new Size(38, 54);
             flop3.SizeMode = PictureBoxSizeMode.StretchImage;
             flop3.TabIndex = 20;
             flop3.TabStop = false;
@@ -428,9 +458,10 @@
             // flop2
             // 
             flop2.BackColor = SystemColors.Control;
-            flop2.Location = new Point(387, 155);
+            flop2.Location = new Point(484, 194);
+            flop2.Margin = new Padding(4);
             flop2.Name = "flop2";
-            flop2.Size = new Size(30, 43);
+            flop2.Size = new Size(38, 54);
             flop2.SizeMode = PictureBoxSizeMode.StretchImage;
             flop2.TabIndex = 19;
             flop2.TabStop = false;
@@ -438,9 +469,10 @@
             // flop1
             // 
             flop1.BackColor = SystemColors.Control;
-            flop1.Location = new Point(351, 155);
+            flop1.Location = new Point(439, 194);
+            flop1.Margin = new Padding(4);
             flop1.Name = "flop1";
-            flop1.Size = new Size(30, 43);
+            flop1.Size = new Size(38, 54);
             flop1.SizeMode = PictureBoxSizeMode.StretchImage;
             flop1.TabIndex = 18;
             flop1.TabStop = false;
@@ -448,9 +480,10 @@
             // player1Card2
             // 
             player1Card2.BackColor = SystemColors.Control;
-            player1Card2.Location = new Point(600, 180);
+            player1Card2.Location = new Point(750, 225);
+            player1Card2.Margin = new Padding(4);
             player1Card2.Name = "player1Card2";
-            player1Card2.Size = new Size(30, 43);
+            player1Card2.Size = new Size(38, 54);
             player1Card2.SizeMode = PictureBoxSizeMode.StretchImage;
             player1Card2.TabIndex = 17;
             player1Card2.TabStop = false;
@@ -459,9 +492,10 @@
             // player1Card1
             // 
             player1Card1.BackColor = SystemColors.Control;
-            player1Card1.Location = new Point(600, 131);
+            player1Card1.Location = new Point(750, 164);
+            player1Card1.Margin = new Padding(4);
             player1Card1.Name = "player1Card1";
-            player1Card1.Size = new Size(30, 43);
+            player1Card1.Size = new Size(38, 54);
             player1Card1.SizeMode = PictureBoxSizeMode.StretchImage;
             player1Card1.TabIndex = 16;
             player1Card1.TabStop = false;
@@ -470,9 +504,10 @@
             // player3Card2
             // 
             player3Card2.BackColor = SystemColors.Control;
-            player3Card2.Location = new Point(243, 180);
+            player3Card2.Location = new Point(304, 225);
+            player3Card2.Margin = new Padding(4);
             player3Card2.Name = "player3Card2";
-            player3Card2.Size = new Size(30, 43);
+            player3Card2.Size = new Size(38, 54);
             player3Card2.SizeMode = PictureBoxSizeMode.StretchImage;
             player3Card2.TabIndex = 15;
             player3Card2.TabStop = false;
@@ -481,9 +516,10 @@
             // player3Card1
             // 
             player3Card1.BackColor = SystemColors.Control;
-            player3Card1.Location = new Point(243, 131);
+            player3Card1.Location = new Point(304, 164);
+            player3Card1.Margin = new Padding(4);
             player3Card1.Name = "player3Card1";
-            player3Card1.Size = new Size(30, 43);
+            player3Card1.Size = new Size(38, 54);
             player3Card1.SizeMode = PictureBoxSizeMode.StretchImage;
             player3Card1.TabIndex = 14;
             player3Card1.TabStop = false;
@@ -492,9 +528,10 @@
             // player2Card2
             // 
             player2Card2.BackColor = SystemColors.Control;
-            player2Card2.Location = new Point(447, 103);
+            player2Card2.Location = new Point(559, 129);
+            player2Card2.Margin = new Padding(4);
             player2Card2.Name = "player2Card2";
-            player2Card2.Size = new Size(30, 43);
+            player2Card2.Size = new Size(38, 54);
             player2Card2.SizeMode = PictureBoxSizeMode.StretchImage;
             player2Card2.TabIndex = 13;
             player2Card2.TabStop = false;
@@ -502,9 +539,10 @@
             // player2Card1
             // 
             player2Card1.BackColor = SystemColors.Control;
-            player2Card1.Location = new Point(411, 103);
+            player2Card1.Location = new Point(514, 129);
+            player2Card1.Margin = new Padding(4);
             player2Card1.Name = "player2Card1";
-            player2Card1.Size = new Size(30, 43);
+            player2Card1.Size = new Size(38, 54);
             player2Card1.SizeMode = PictureBoxSizeMode.StretchImage;
             player2Card1.TabIndex = 12;
             player2Card1.TabStop = false;
@@ -512,9 +550,10 @@
             // userCard2
             // 
             userCard2.BackColor = SystemColors.Control;
-            userCard2.Location = new Point(62, 301);
+            userCard2.Location = new Point(78, 376);
+            userCard2.Margin = new Padding(4);
             userCard2.Name = "userCard2";
-            userCard2.Size = new Size(50, 73);
+            userCard2.Size = new Size(62, 91);
             userCard2.SizeMode = PictureBoxSizeMode.StretchImage;
             userCard2.TabIndex = 6;
             userCard2.TabStop = false;
@@ -522,9 +561,10 @@
             // userCard1
             // 
             userCard1.BackColor = SystemColors.Control;
-            userCard1.Location = new Point(6, 301);
+            userCard1.Location = new Point(8, 376);
+            userCard1.Margin = new Padding(4);
             userCard1.Name = "userCard1";
-            userCard1.Size = new Size(50, 73);
+            userCard1.Size = new Size(62, 91);
             userCard1.SizeMode = PictureBoxSizeMode.StretchImage;
             userCard1.TabIndex = 5;
             userCard1.TabStop = false;
@@ -532,9 +572,10 @@
             // pictureBox5
             // 
             pictureBox5.BackColor = Color.Sienna;
-            pictureBox5.Location = new Point(227, 94);
+            pictureBox5.Location = new Point(284, 118);
+            pictureBox5.Margin = new Padding(4);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(415, 166);
+            pictureBox5.Size = new Size(519, 208);
             pictureBox5.TabIndex = 4;
             pictureBox5.TabStop = false;
             // 
@@ -542,9 +583,10 @@
             // 
             player2Image.BackColor = Color.Silver;
             player2Image.Image = Properties.Resources.user;
-            player2Image.Location = new Point(411, 26);
+            player2Image.Location = new Point(514, 32);
+            player2Image.Margin = new Padding(4);
             player2Image.Name = "player2Image";
-            player2Image.Size = new Size(57, 62);
+            player2Image.Size = new Size(71, 78);
             player2Image.SizeMode = PictureBoxSizeMode.Zoom;
             player2Image.TabIndex = 3;
             player2Image.TabStop = false;
@@ -554,9 +596,10 @@
             // 
             player3Image.BackColor = Color.Silver;
             player3Image.Image = Properties.Resources.user;
-            player3Image.Location = new Point(164, 147);
+            player3Image.Location = new Point(205, 184);
+            player3Image.Margin = new Padding(4);
             player3Image.Name = "player3Image";
-            player3Image.Size = new Size(57, 62);
+            player3Image.Size = new Size(71, 78);
             player3Image.SizeMode = PictureBoxSizeMode.Zoom;
             player3Image.TabIndex = 2;
             player3Image.TabStop = false;
@@ -566,9 +609,10 @@
             // 
             player1Image.BackColor = Color.Silver;
             player1Image.Image = Properties.Resources.user;
-            player1Image.Location = new Point(648, 147);
+            player1Image.Location = new Point(810, 184);
+            player1Image.Margin = new Padding(4);
             player1Image.Name = "player1Image";
-            player1Image.Size = new Size(57, 62);
+            player1Image.Size = new Size(71, 78);
             player1Image.SizeMode = PictureBoxSizeMode.Zoom;
             player1Image.TabIndex = 1;
             player1Image.TabStop = false;
@@ -579,9 +623,10 @@
             userImage.BackColor = Color.Silver;
             userImage.BorderStyle = BorderStyle.FixedSingle;
             userImage.Image = Properties.Resources.user;
-            userImage.Location = new Point(411, 266);
+            userImage.Location = new Point(514, 332);
+            userImage.Margin = new Padding(4);
             userImage.Name = "userImage";
-            userImage.Size = new Size(57, 62);
+            userImage.Size = new Size(71, 77);
             userImage.SizeMode = PictureBoxSizeMode.Zoom;
             userImage.TabIndex = 0;
             userImage.TabStop = false;
@@ -592,13 +637,14 @@
             // 
             // GameForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(904, 521);
+            ClientSize = new Size(1139, 672);
             Controls.Add(gameTable);
             Controls.Add(gameDetails);
             Controls.Add(statusStrip1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4);
             MaximizeBox = false;
             Name = "GameForm";
             Text = "GameForm";

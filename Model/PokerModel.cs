@@ -28,16 +28,19 @@ namespace Model
         public event EventHandler? RoundEnded;
         public event EventHandler? CircleEnded;
         public event EventHandler? StartingProcedureEnded;
+        public event EventHandler? EnableTimer;
+        public event EventHandler? DisableTimer;
         public event EventHandler<int>? UpdatePlayer;
         public event EventHandler<int>? RevealPlayerCards;
+        public event EventHandler<int>? FoldPlayerCards;
         public event EventHandler<int>? CurrentPlayerIndicator;
 
         public PokerModel(string playerName, int numOfPlayers)
         {
-            StartNewGame(playerName, numOfPlayers);
+            //StartNewGame(playerName, numOfPlayers);
         }
 
-        private void StartNewGame(string playerName, int numOfPlayers)
+        public void StartNewGame(string playerName, int numOfPlayers)
         {
             players = new List<Player>()
             {
@@ -52,8 +55,6 @@ namespace Model
             }
             smallBlind = 0;
             StartNewRound();
-            Round();
-            GoThroughPlayers();
         }
 
         public void Testing()
@@ -67,11 +68,9 @@ namespace Model
             River?.Invoke(this, EventArgs.Empty);
         }
 
-        private void Round()
+        public void Circle()
         {
-            target = smallBlind - 1;
-            current = smallBlind;
-            changed = false;
+            ++numOfCardsRevealed;
             switch (numOfCardsRevealed)
             {
                 case 3:
@@ -92,66 +91,57 @@ namespace Model
                 default:
                     break;
             }
-            ++numOfCardsRevealed;
-            smallBlind = (++smallBlind) % players!.Count;
-            CircleEnded?.Invoke(this, EventArgs.Empty);
+            //smallBlind = (++smallBlind) % players!.Count;
         }
-        private void GoThroughPlayers()
+        public void GoThroughPlayers()
         {
-            if(current == target)
+            CurrentPlayerIndicator?.Invoke(this, players![current].Number);
+            if (current == 0)
             {
-                RoundEnded?.Invoke(this, EventArgs.Empty);
-                StartNewRound();
+                DisableTimer?.Invoke(this,EventArgs.Empty);
+                UserChoose?.Invoke(this, EventArgs.Empty);
                 return;
             }
             players!.ForEach(p =>
             {
-                if(p.IsActive && p.Money == 0)
+                if (p.IsActive && p.Money == 0)
                 {
                     ShowCards();
                     return;
                 }
             });
-            while (current != target && current !=0)
+            if (players![current].IsBot)
             {
-                CurrentPlayerIndicator?.Invoke(this, current);
-                if (target == smallBlind - 1 && !changed)
+                PokerAction action = players![current].ChooseAction();
+                if (action == PokerAction.Raise)
                 {
-                    target = smallBlind;
+                    target = current;
+                    raise = players[current].RaiseMoneyOnTable();
                 }
-                if (!players![current].IsActive)
+                if(action == PokerAction.Fold)
                 {
-                    continue;
+                    players[current].SetActivation(false);
+                    FoldPlayerCards?.Invoke(this, players[current].Number);
                 }
-                if (players![current].IsBot)
-                {
-                    PokerAction action = players![current].ChooseAction();
-                    if (action == PokerAction.Raise)
-                    {
-                        target = current;
-                        changed = true;
-                        raise = players[current].RaiseMoneyOnTable();
-                    }
-                    UpdatePlayer?.Invoke(this, players![current].Number);
-                }
-                else
-                {
-                    UserChoose?.Invoke(this, EventArgs.Empty);
-                }
-                current = (current + 1) % players.Count;
+                UpdatePlayer?.Invoke(this, players![current].Number);
             }
-            if(current == 0)
+            else
             {
                 UserChoose?.Invoke(this, EventArgs.Empty);
+            }
+            current = (current + 1) % players.Count;
+            if (current == target)
+            {
+                CircleEnded?.Invoke(this, EventArgs.Empty);
+                Circle();
                 return;
             }
-            Round();
         }
 
         private void ShowCards()
         {
             int i = 0;
-            var winningOrder = players!.Where(x => x.IsActive).Select(x => new { rationg = Dealer.EvaluateCards(x.Cards!),idx = i++ }).OrderBy(x => x.idx).ToList();
+            var winningOrder = players!.Where(x => x.IsActive).Select(x => new { rationg = Dealer.EvaluateCards(x.Cards!), idx = i++ }).OrderBy(x => x.idx).ToList();
             winningOrder.ForEach(x =>
             {
                 RevealPlayerCards?.Invoke(this, x.idx);
@@ -170,12 +160,15 @@ namespace Model
             deck = new Deck();
             foreach (Player p in players!)
             {
-                p.Cards.Clear();
+                p.SetDefaultForRound();
                 p.GetCardFromDeck(deck.Draw());
                 p.GetCardFromDeck(deck.Draw());
+                UpdatePlayer?.Invoke(this, p.Number);
             }
             sharedCards = Enumerable.Range(0, 5).Select(x => deck.Draw()).ToList()!;
             numOfCardsRevealed = 2;
+            target = smallBlind - 1;
+            current = smallBlind;
             StartingProcedureEnded?.Invoke(this, EventArgs.Empty);
         }
 
@@ -196,11 +189,12 @@ namespace Model
 
         public void UserCall()
         {
-            if(!players![0].AddMoney((-1) * raise))
+            if (!players![0].AddMoney((-1) * raise))
             {
                 throw new Exception("Not enough Money!");
             }
             current++;
+            EnableTimer?.Invoke(this, EventArgs.Empty);
         }
 
         public void UserRaise(int raiseValue)
@@ -210,6 +204,8 @@ namespace Model
                 throw new Exception("Not enough Money!");
             }
             current++;
+            EnableTimer?.Invoke(this, EventArgs.Empty);
+
         }
 
         public int GetUserTotalMoney()
@@ -220,12 +216,15 @@ namespace Model
         public void UserCheck()
         {
             current++;
+            EnableTimer?.Invoke(this, EventArgs.Empty);
         }
 
         public void UserFold()
         {
             players![0].SetActivation(false);
             current++;
+            FoldPlayerCards?.Invoke(this, 0);
+            EnableTimer?.Invoke(this, EventArgs.Empty);
         }
     }
 }

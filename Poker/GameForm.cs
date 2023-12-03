@@ -14,6 +14,13 @@ namespace Poker
         {
             InitializeComponent();
             CardBack = Properties.Resources.cardBack;
+            gameTimer.Enabled = false;
+            gameTimer.Tick += NextPlayer;
+        }
+
+        private void NextPlayer(object? sender, EventArgs e)
+        {
+            model!.GoThroughPlayers();
         }
 
         private void btnCall_Click(object sender, EventArgs e)
@@ -30,7 +37,7 @@ namespace Poker
                 {
                     throw new Exception("Not enough Money!");
                 }
-                    model!.UserRaise(raiseValue);
+                model!.UserRaise(raiseValue);
             }
             catch (Exception ex)
             {
@@ -70,14 +77,14 @@ namespace Poker
 
             players = new List<PlayerUI>()
             {
-                new PlayerUI(userImage, userBetMoney, userCard1, userCard2,userTotalMoney,0,484,284),
-                new PlayerUI(player2Image, player2BetMoney, player2Card1, player2Card2,player2TotalMoney,2,380, 47)
+                new PlayerUI(userImage, userBetMoney, userCard1, userCard2,userTotalMoney,0,605, 355),
+                new PlayerUI(player2Image, player2BetMoney, player2Card1, player2Card2,player2TotalMoney,2,475, 59)
             };
 
             if (numOfPlayers == 4)
             {
-                players.Add(new PlayerUI(player1Image, player1BetMoney, player1Card1, player1Card2, player1TotalMoney, 1, 661, 113));
-                players.Add(new PlayerUI(player3Image, player3BetMoney, player3Card1, player3Card2, player3TotalMoney, 3, 145, 174));
+                players.Add(new PlayerUI(player1Image, player1BetMoney, player1Card1, player1Card2, player1TotalMoney, 1, 836, 141));
+                players.Add(new PlayerUI(player3Image, player3BetMoney, player3Card1, player3Card2, player3TotalMoney, 3, 233, 276));
             }
 
             sharedCards = new List<PictureBox>
@@ -106,13 +113,18 @@ namespace Poker
 
             model.UpdatePlayer += UpdatePlayer;
             model.RoundEnded += RoundEnded;
-            model.RevealPlayerCards += RevealPlayerCards;
+            model.FoldPlayerCards += RevealPlayerCards;
+            model.FoldPlayerCards += FoldPlayerCards;
             model.CurrentPlayerIndicator += CurrentPlayerIncidator;
             model.StartingProcedureEnded += StartingProcedureEnded;
+            model.EnableTimer += EnableTimer;
+            model.DisableTimer += DisableTimer;
             model.UserChoose += UserChoose;
             model.Flop += Flop;
             model.Turn += Turn;
             model.River += River;
+
+            model.StartNewGame(username, numOfPlayers);
 
             //model.Testing();
 
@@ -121,9 +133,27 @@ namespace Poker
             //Thread.Sleep(1000);
         }
 
+        private void FoldPlayerCards(object? sender, int e)
+        {
+            PlayerUI playerUI = players!.Find(x => x.Key == e)!;
+            playerUI.Card1.Visible = false;
+            playerUI.Card2.Visible = false;
+        }
+
+        private void DisableTimer(object? sender, EventArgs e)
+        {
+            gameTimer.Enabled = false;
+        }
+
+        private void EnableTimer(object? sender, EventArgs e)
+        {
+            gameTimer.Enabled = true;
+        }
+
         private void StartingProcedureEnded(object? sender, EventArgs e)
         {
             model!.ShowUserCards();
+            model.GoThroughPlayers();
         }
 
         private void CurrentPlayerIncidator(object? sender, int e)

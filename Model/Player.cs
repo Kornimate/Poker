@@ -52,7 +52,7 @@ namespace Model
             int amount = Dealer.EvaluateCards(this.Cards!) switch
             {
                 PokerRating.HighCard => 0,
-                PokerRating.Pair => Math.Min(Money,(int)0.1*Money),
+                PokerRating.Pair => Math.Min(Money, (int)0.1 * Money),
                 PokerRating.TwoPairs => Math.Min(Money, (int)0.2 * Money),
                 PokerRating.ThreeOfAKind => Math.Min(Money, (int)0.3 * Money),
                 PokerRating.Straight => Math.Min(Money, (int)0.35 * Money),
@@ -61,6 +61,7 @@ namespace Model
                 PokerRating.FourOfAKind => Math.Min(Money, (int)0.6 * Money),
                 PokerRating.StraightFlush => Math.Min(Money, (int)0.65 * Money),
                 PokerRating.RoyalFlush => Money,
+                _ => 0,
             };
             Money -= amount;
             MoneyOnTable += amount;
@@ -79,6 +80,13 @@ namespace Model
             {
                 IsActive = false; 
             }
+        }
+
+        internal void SetDefaultForRound()
+        {
+            IsActive = true;
+            MoneyOnTable = 0;
+            Cards.Clear();
         }
     }
 }
