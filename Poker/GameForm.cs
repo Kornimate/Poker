@@ -34,6 +34,11 @@ namespace Poker
                 roundWinner.Text = "";
                 showingTimer.Enabled = false;
                 model!.StartNewRound();
+                players!.ForEach(p =>
+                {
+                    p.Card1.Visible = true;
+                    p.Card2.Visible = true;
+                });
                 return;
             }
             waiter.Text = $"({5 - ++showingCounter} sec)";
@@ -150,6 +155,7 @@ namespace Poker
             model.StartingProcedureEnded += StartingProcedureEnded;
             model.EnableShowingTimer += ShowingTimerEnabled;
             model.ShowCardsEvaluation += ShowCardsEvaluation;
+            model.AnnounceWinner += AnnounceWinner;
             model.CircleEnded += CircleEnded;
             model.EnableTimer += EnableTimer;
             model.DisableTimer += DisableTimer;
@@ -164,6 +170,11 @@ namespace Poker
 
             gameTable.Enabled = true;
             gameTable.Visible = true;
+        }
+
+        private void AnnounceWinner(object? sender, string e)
+        {
+            roundWinner.Text = e;
         }
 
         private void ShowCardsEvaluation(object? sender, int e)

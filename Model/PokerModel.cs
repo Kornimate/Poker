@@ -38,6 +38,7 @@ namespace Model
         public event EventHandler<int>? CurrentPlayerIndicator;
         public event EventHandler<int>? SmallBlindIndicator;
         public event EventHandler<int>? ShowCardsEvaluation;
+        public event EventHandler<string>? AnnounceWinner;
 
         public PokerModel()
         {
@@ -182,19 +183,21 @@ namespace Model
         private void ShowCards()
         {
             DisableTimer?.Invoke(this, EventArgs.Empty);
-            int i = 0;
+            CircleEnded?.Invoke(this, 0);
             var winningOrder = players!.Where(x => x.IsActive).Select(x => new { rating = Dealer.EvaluateCards(x.Cards!), idx = x.Number }).OrderBy(x => x.rating).ToList();
             winningOrder.ForEach(x =>
             {
-                RevealPlayerCards?.Invoke(this, players![x.idx].Number);
+                RevealPlayerCards?.Invoke(this, x.idx);
             });
-            i = 0;
             players!.ForEach(p =>
             {
-                i += p.MoneyOnTable;
                 p.ClearTable();
                 UpdatePlayer?.Invoke(this, p.Number);
             });
+            Player p = players.First(x => x.Number == winningOrder[0].idx);
+            p.AddMoney(sumMoneyOnTable);
+            AnnounceWinner?.Invoke(this, p.Name);
+            UpdatePlayer?.Invoke(this, p.Number);
             EnableShowingTimer?.Invoke(this, EventArgs.Empty);
         }
 

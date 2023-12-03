@@ -93,5 +93,10 @@ namespace Model
             MoneyOnTable = 0;
             Cards.Clear();
         }
+
+        public void AddMoney(int amount)
+        {
+            Money += amount;
+        }
     }
 }
