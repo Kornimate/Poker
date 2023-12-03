@@ -12,6 +12,7 @@ namespace Model
         public int MoneyOnTable { get; private set; }
         public int Number { get; private set; }
         public bool IsActive { get; private set; }
+        public PokerRating? Rating { get; set; }
         public Player(string name, bool isBot, int number)
         {
             Name = name;
@@ -21,7 +22,7 @@ namespace Model
             MoneyOnTable = 0;
             Money = 10_000;
             IsActive = true;
-
+            Rating = null;
         }
         public void GetCardFromDeck(Card? card)
         {
@@ -37,13 +38,14 @@ namespace Model
             return PokerAction.Check;
         }
 
-        public bool AddMoney(int amount)
+        public bool RaiseMoney(int amount)
         {
-            if(Money+amount < 0)
+            if(Money-amount < 0)
             {
                 return false;
             }
-            Money += amount;
+            Money-= amount;
+            MoneyOnTable += amount;
             return true;
         }
 
@@ -81,8 +83,11 @@ namespace Model
                 IsActive = false; 
             }
         }
-
-        internal void SetDefaultForRound()
+        public void SetMoneyOnTable(int value)
+        {
+            MoneyOnTable=value;
+        }
+        public void SetDefaultForRound()
         {
             IsActive = Money > 0;
             MoneyOnTable = 0;

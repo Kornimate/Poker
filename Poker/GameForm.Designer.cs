@@ -32,6 +32,7 @@
             statusStrip1 = new StatusStrip();
             lblUserName = new ToolStripStatusLabel();
             lblCardValue = new ToolStripStatusLabel();
+            waiter = new ToolStripStatusLabel();
             gameDetails = new GroupBox();
             nmPlayerNumber = new NumericUpDown();
             label2 = new Label();
@@ -76,6 +77,8 @@
             player1Image = new PictureBox();
             userImage = new PictureBox();
             gameTimer = new System.Windows.Forms.Timer(components);
+            showingTimer = new System.Windows.Forms.Timer(components);
+            roundWinner = new ToolStripStatusLabel();
             statusStrip1.SuspendLayout();
             gameDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nmPlayerNumber).BeginInit();
@@ -105,7 +108,7 @@
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { lblUserName, lblCardValue });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { lblUserName, lblCardValue, waiter, roundWinner });
             statusStrip1.Location = new Point(0, 640);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 18, 0);
@@ -124,6 +127,11 @@
             lblCardValue.Name = "lblCardValue";
             lblCardValue.Size = new Size(83, 25);
             lblCardValue.Text = "No Value";
+            // 
+            // waiter
+            // 
+            waiter.Name = "waiter";
+            waiter.Size = new Size(0, 25);
             // 
             // gameDetails
             // 
@@ -261,7 +269,6 @@
             sumMoneyOnTable.Size = new Size(37, 25);
             sumMoneyOnTable.TabIndex = 34;
             sumMoneyOnTable.Text = "0 $";
-            sumMoneyOnTable.Visible = false;
             // 
             // indicator
             // 
@@ -386,6 +393,7 @@
             // 
             betAmount.Location = new Point(132, 70);
             betAmount.Margin = new Padding(4);
+            betAmount.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             betAmount.Name = "betAmount";
             betAmount.Size = new Size(116, 31);
             betAmount.TabIndex = 10;
@@ -662,6 +670,15 @@
             // 
             gameTimer.Interval = 200;
             // 
+            // showingTimer
+            // 
+            showingTimer.Interval = 200;
+            // 
+            // roundWinner
+            // 
+            roundWinner.Name = "roundWinner";
+            roundWinner.Size = new Size(0, 25);
+            // 
             // GameForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -754,5 +771,8 @@
         public System.Windows.Forms.Timer gameTimer;
         private Label sumMoneyOnTable;
         private Label smallBlind;
+        public System.Windows.Forms.Timer showingTimer;
+        private ToolStripStatusLabel waiter;
+        private ToolStripStatusLabel roundWinner;
     }
 }

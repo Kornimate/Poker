@@ -12,13 +12,31 @@ namespace Poker
         private readonly Bitmap? CardBack;
 
         private const int WAITTIME = 200;
+        private int showingCounter = 0;
         public GameForm()
         {
             InitializeComponent();
             CardBack = Properties.Resources.cardBack;
             gameTimer.Interval= WAITTIME;
+            showingTimer.Interval = 1000;
             gameTimer.Enabled = false;
+            showingTimer.Enabled = false;
             gameTimer.Tick += NextPlayer;
+            showingTimer.Tick += ShowingTimePassed;
+        }
+
+        private void ShowingTimePassed(object? sender, EventArgs e)
+        {
+            if(showingCounter == 5)
+            {
+                waiter.Text = $"";
+                lblCardValue.Text = "No Value";
+                roundWinner.Text = "";
+                showingTimer.Enabled = false;
+                model!.StartNewRound();
+                return;
+            }
+            waiter.Text = $"({5 - ++showingCounter} sec)";
         }
 
         private void NextPlayer(object? sender, EventArgs e)
@@ -40,6 +58,10 @@ namespace Poker
                 if (raiseValue > model!.GetUserTotalMoney())
                 {
                     throw new Exception("Not enough Money!");
+                }
+                if (raiseValue <=0)
+                {
+                    throw new Exception("Invalid Money amount!");
                 }
                 userControls.Enabled = false;
                 model!.UserRaise(raiseValue);
@@ -81,6 +103,7 @@ namespace Poker
 
             lblUserName.Text = username;
             lblCardValue.Text = "No Value";
+            sumMoneyOnTable.Text = "0 $";
 
             players = new List<PlayerUI>()
             {
@@ -125,6 +148,9 @@ namespace Poker
             model.CurrentPlayerIndicator += CurrentPlayerIncidator;
             model.SmallBlindIndicator += SmallBlindIndicator;
             model.StartingProcedureEnded += StartingProcedureEnded;
+            model.EnableShowingTimer += ShowingTimerEnabled;
+            model.ShowCardsEvaluation += ShowCardsEvaluation;
+            model.CircleEnded += CircleEnded;
             model.EnableTimer += EnableTimer;
             model.DisableTimer += DisableTimer;
             model.UserChoose += UserChoose;
@@ -138,6 +164,25 @@ namespace Poker
 
             gameTable.Enabled = true;
             gameTable.Visible = true;
+        }
+
+        private void ShowCardsEvaluation(object? sender, int e)
+        {
+            Player player = model!.players!.Find(x => x.Number == e)!;
+            lblCardValue.Text = player.Rating.ToString();
+        }
+
+        private void ShowingTimerEnabled(object? sender, EventArgs e)
+        {
+            showingCounter = 0;
+            waiter.Text = $"({5-showingCounter} sec)";
+            showingTimer.Enabled = true;
+            userControls.Enabled = false;
+        }
+
+        private void CircleEnded(object? sender, int e)
+        {
+            sumMoneyOnTable.Text = FormatMoney(e);
         }
 
         private void SmallBlindIndicator(object? sender, int e)
@@ -215,7 +260,12 @@ namespace Poker
                 p.Card2.Image = CardBack;
                 p.Money.Text = FormatMoney(0);
             });
+            sharedCards!.ForEach(c =>
+            {
+                c.Image = CardBack;
+            });
             lblCardValue.Text = "No Value";
+            sumMoneyOnTable.Text = "0 $";
         }
 
         private void UpdatePlayer(object? sender, int e)
