@@ -119,8 +119,9 @@ namespace Model
                 amount = Money - raise;
             }
             amount += raise;
-            Money -= amount;
-            MoneyOnTable += amount;
+            int diff = amount - MoneyOnTable;
+            Money -= diff;
+            MoneyOnTable += diff;
             return amount;
         }
 

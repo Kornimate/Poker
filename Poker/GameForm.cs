@@ -204,7 +204,7 @@ namespace Poker
         private void GameEnd(object? sender, EventArgs e)
         {
             MessageBox.Show("The Game has ended", "Game End", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            StartNewGameUI(username,numOfPlayers);
+            EndGameUI();
         }
 
         private void AnnounceWinner(object? sender, string e)
