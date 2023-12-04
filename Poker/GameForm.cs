@@ -11,7 +11,7 @@ namespace Poker
         private List<PictureBox>? sharedCards;
         private readonly Bitmap? CardBack;
 
-        private const int WAITTIME = 200;
+        private const int WAITTIME = 2000;
         private int showingCounter = 0;
         public GameForm()
         {
@@ -32,6 +32,7 @@ namespace Poker
                 waiter.Text = $"";
                 lblCardValue.Text = "No Value";
                 roundWinner.Text = "";
+                lblCardValue.Visible = true;
                 showingTimer.Enabled = false;
                 model!.StartNewRound();
                 players!.ForEach(p =>
@@ -51,8 +52,16 @@ namespace Poker
 
         private void btnCall_Click(object sender, EventArgs e)
         {
-            userControls.Enabled = false;
-            model!.UserCall();
+            try
+            {
+                model!.UserCall();
+                userControls.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnRaise_Click(object sender, EventArgs e)
@@ -68,8 +77,8 @@ namespace Poker
                 {
                     throw new Exception("Invalid Money amount!");
                 }
-                userControls.Enabled = false;
                 model!.UserRaise(raiseValue);
+                userControls.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -79,14 +88,29 @@ namespace Poker
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            userControls.Enabled = false;
-            model!.UserCheck();
+            try
+            {
+                model!.UserCheck();
+                userControls.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnFold_Click(object sender, EventArgs e)
         {
-            userControls.Enabled = false;
-            model!.UserFold();
+            try
+            {
+                model!.UserFold();
+                userControls.Enabled = false;
+                lblCardValue.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void startBtn_Click(object sender, EventArgs e)
@@ -147,6 +171,7 @@ namespace Poker
             model = new PokerModel();
 
             model.UpdatePlayer += UpdatePlayer;
+            model.GameEnd += GameEnd;
             model.RoundEnded += RoundEnded;
             model.RevealPlayerCards += RevealPlayerCards;
             model.FoldPlayerCards += FoldPlayerCards;
@@ -170,6 +195,11 @@ namespace Poker
 
             gameTable.Enabled = true;
             gameTable.Visible = true;
+        }
+
+        private void GameEnd(object? sender, EventArgs e)
+        {
+            MessageBox.Show("The Game has ended", "Game End", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void AnnounceWinner(object? sender, string e)

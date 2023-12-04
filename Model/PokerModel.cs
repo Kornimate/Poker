@@ -109,31 +109,52 @@ namespace Model
                     return;
                 }
             });
+            if (players.Count(x => x.IsActive) == 1)
+            {
+                if (numOfCardsRevealed == 2)
+                {
+                    EndOfGame();
+                }
+                else
+                {
+                    ShowCards();
+                }
+            }
             if (players![current].IsActive)
             {
                 CurrentPlayerIndicator?.Invoke(this, players![current].Number);
-                players[current].Rating = Dealer.EvaluateCards(Enumerable.Concat(sharedCards!, players[current].Cards).ToList()!);
+                players[current].Rating = Dealer.EvaluateCards(Enumerable.Concat(sharedCards!.Take(numOfCardsRevealed)!, players[current].Cards).ToList()!).Item1;
                 if (players![current].IsBot)
                 {
-                    PokerAction action = players![current].ChooseAction();
+                    PokerAction action = players![current].ChooseAction(raise);
                     if (action == PokerAction.Raise)
                     {
                         target = current;
-                        raise = players[current].RaiseMoneyOnTable();
+                        changed = true;
+                        int amount = players[current].RaiseMoneyOnTable(raise);
+                        players[current].HasAlreadyRaised = true;
+                        raise = amount;
                     }
                     if (action == PokerAction.Fold)
                     {
                         players[current].SetActivation(false);
                         FoldPlayerCards?.Invoke(this, players[current].Number);
                     }
+                    if (action == PokerAction.Call)
+                    {
+                        players[current].CallMoney(raise);
+                    }
                     UpdatePlayer?.Invoke(this, players![current].Number);
                 }
                 else
                 {
-                    DisableTimer?.Invoke(this, EventArgs.Empty);
-                    UserChoose?.Invoke(this, EventArgs.Empty);
-                    ShowCardsEvaluation?.Invoke(this, players[current].Number);
-                    return;
+                    if (current != target || !changed)
+                    {
+                        DisableTimer?.Invoke(this, EventArgs.Empty);
+                        UserChoose?.Invoke(this, EventArgs.Empty);
+                        ShowCardsEvaluation?.Invoke(this, players[current].Number);
+                        return;
+                    }
                 }
             }
             IncrementCurrent();
@@ -152,6 +173,7 @@ namespace Model
                 });
                 CircleEnded?.Invoke(this, sumMoneyOnTable);
                 raise = 0;
+                changed = false;
                 Circle();
                 return;
             }
@@ -184,14 +206,14 @@ namespace Model
         {
             DisableTimer?.Invoke(this, EventArgs.Empty);
             CircleEnded?.Invoke(this, 0);
-            var winningOrder = players!.Where(x => x.IsActive).Select(x => new { rating = Dealer.EvaluateCards(x.Cards!), idx = x.Number }).OrderBy(x => x.rating).ToList();
+            var winningOrder = players!.Where(x => x.IsActive).Select(x => new { rating = Dealer.EvaluateCards(Enumerable.Concat(sharedCards!, x.Cards).ToList()!), idx = x.Number }).OrderByDescending(x => (int)x.rating.Item1).ThenByDescending(x => (int)x.rating.Item2).ToList();
             winningOrder.ForEach(x =>
             {
                 RevealPlayerCards?.Invoke(this, x.idx);
             });
             players!.ForEach(p =>
             {
-                p.ClearTable();
+                p.SetDefaultForRound();
                 UpdatePlayer?.Invoke(this, p.Number);
             });
             Player p = players.First(x => x.Number == winningOrder[0].idx);
@@ -215,6 +237,7 @@ namespace Model
             sharedCards = Enumerable.Range(0, 5).Select(x => deck.Draw()).ToList()!;
             numOfCardsRevealed = 2;
             sumMoneyOnTable = 0;
+            changed = false;
             IncrementSmallBlind();
             SmallBlindIndicator?.Invoke(this, players![smallBlind].Number);
             target = smallBlind;
@@ -243,10 +266,16 @@ namespace Model
 
         public void UserCall()
         {
-            if (!players![0].RaiseMoney(raise))
+            if (!RaiseExists())
+            {
+                throw new Exception("No raise in circle!");
+            }
+            if (GetUserTotalMoney() < raise)
             {
                 throw new Exception("Not enough Money!");
             }
+            players![0].CallMoney(raise);
+            UpdatePlayer?.Invoke(this, players[0].Number);
             if (!RevealForUserIfLastInRow())
             {
                 EnableTimer?.Invoke(this, EventArgs.Empty);
@@ -255,15 +284,19 @@ namespace Model
 
         public void UserRaise(int raiseValue)
         {
-            if (!players![0].RaiseMoney(raiseValue))
+            if (GetUserTotalMoney() < raiseValue+raise)
             {
                 throw new Exception("Not enough Money!");
             }
+            raise += raiseValue;
+            players![0].CallMoney(raise);
+            changed = true;
+            target = 0; // user number in line, always 0;
+            UpdatePlayer?.Invoke(this, players[0].Number);
             if (!RevealForUserIfLastInRow())
             {
                 EnableTimer?.Invoke(this, EventArgs.Empty);
             }
-            UpdatePlayer?.Invoke(this, players[0].Number);
         }
 
         public int GetUserTotalMoney()
@@ -273,10 +306,16 @@ namespace Model
 
         public void UserCheck()
         {
+
+            if (RaiseExists())
+            {
+                throw new Exception("You can not check!");
+            }
             if (!RevealForUserIfLastInRow())
             {
                 EnableTimer?.Invoke(this, EventArgs.Empty);
             }
+            UpdatePlayer?.Invoke(this, players![0].Number);
         }
 
         public void UserFold()
@@ -287,6 +326,7 @@ namespace Model
             {
                 EnableTimer?.Invoke(this, EventArgs.Empty);
             }
+            UpdatePlayer?.Invoke(this, players[0].Number);
         }
     }
 }
