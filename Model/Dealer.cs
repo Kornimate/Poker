@@ -10,7 +10,7 @@ namespace Model
     {
         public static (PokerRating, PokerValue) EvaluateCards(List<Card> cards)
         {
-            if(cards.Count < 5)
+            if (cards.Count < 5)
             {
                 return (PokerRating.HighCard, cards.Max(x => x.Value));
             }
@@ -48,10 +48,30 @@ namespace Model
             var listOfColors = colors.Select(x => new { color = x.Key, multiplicity = x.Value }).OrderBy(x => x.multiplicity).ToList();
             var listOfValuesByValues = values.Select(x => new { value = x.Key, multiplicity = x.Value }).OrderBy(x => x.value).ToList();
             var listOfValuesByMultipicity = values.Select(x => new { value = x.Key, multiplicity = x.Value }).OrderBy(x => x.multiplicity).ToList();
-            //todo royal flush and straight flush
-
-
-
+            if (listOfColors[^1].multiplicity >= 5)
+            {
+                var onlyWithColorsValues = cards.Where(x => x.Color == listOfColors[^1].color).Select(x => x.Value).OrderBy(x => (int)x).ToList();
+                if (onlyWithColorsValues[0] == PokerValue.Ten && onlyWithColorsValues[0] == PokerValue.Jack && onlyWithColorsValues[0] == PokerValue.Queen && onlyWithColorsValues[0] == PokerValue.King && onlyWithColorsValues[0] == PokerValue.Ace)
+                {
+                    return (PokerRating.RoyalFlush, PokerValue.Ace);
+                }
+                int count = 0;
+                for (int i = 1; i < listOfValuesByValues.Count; i++)
+                {
+                    if ((int)onlyWithColorsValues[i - 1] + 1 == (int)onlyWithColorsValues[i])
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        count = 0;
+                    }
+                    if (count == 4)
+                    {
+                        return (PokerRating.StraightFlush, onlyWithColorsValues[^1]);
+                    }
+                }
+            }
             if (listOfValuesByMultipicity[^1].multiplicity == 4)
             {
                 return (PokerRating.FourOfAKind, listOfValuesByMultipicity[^1].value);
@@ -82,7 +102,7 @@ namespace Model
             }
             if (listOfValuesByMultipicity[^1].multiplicity == 3 && listOfValuesByMultipicity[^2].multiplicity == 1)
             {
-                return (PokerRating.ThreeOfAKind, listOfValuesByMultipicity.Where(x => x.multiplicity == 3).Max(x=> x.value));
+                return (PokerRating.ThreeOfAKind, listOfValuesByMultipicity.Where(x => x.multiplicity == 3).Max(x => x.value));
             }
             if (listOfValuesByMultipicity[^1].multiplicity == 2 && listOfValuesByMultipicity[^2].multiplicity == 2)
             {
