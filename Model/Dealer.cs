@@ -50,11 +50,12 @@ namespace Model
             var listOfValuesByMultipicity = values.Select(x => new { value = x.Key, multiplicity = x.Value }).OrderBy(x => x.multiplicity).ToList();
             if (listOfColors[^1].multiplicity >= 5)
             {
-                var onlyWithColorsValues = cards.Where(x => x.Color == listOfColors[^1].color).Select(x => x.Value).OrderBy(x => (int)x).ToList();
+                var onlyWithColorsValues = cards.Where(x => x.Color == listOfColors[^1].color).Select(x => x.Value).OrderBy(x => (int)x).TakeLast(5).ToList();
                 if (onlyWithColorsValues[0] == PokerValue.Ten && onlyWithColorsValues[0] == PokerValue.Jack && onlyWithColorsValues[0] == PokerValue.Queen && onlyWithColorsValues[0] == PokerValue.King && onlyWithColorsValues[0] == PokerValue.Ace)
                 {
                     return (PokerRating.RoyalFlush, PokerValue.Ace);
                 }
+                onlyWithColorsValues = cards.Where(x => x.Color == listOfColors[^1].color).Select(x => x.Value).OrderBy(x => (int)x).ToList();
                 int count = 0;
                 for (int i = 1; i < listOfValuesByValues.Count; i++)
                 {

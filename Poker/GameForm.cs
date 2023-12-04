@@ -10,8 +10,10 @@ namespace Poker
         private List<PlayerUI>? players;
         private List<PictureBox>? sharedCards;
         private readonly Bitmap? CardBack;
+        private string username;
+        private int numOfPlayers;
 
-        private const int WAITTIME = 2000;
+        private const int WAITTIME = 1000;
         private int showingCounter = 0;
         public GameForm()
         {
@@ -122,6 +124,8 @@ namespace Poker
                 MessageBox.Show("Username must be at least one valid char!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            this.username = username;
+            this.numOfPlayers = numOfPlayers;
             StartNewGameUI(username, numOfPlayers);
         }
 
@@ -200,6 +204,7 @@ namespace Poker
         private void GameEnd(object? sender, EventArgs e)
         {
             MessageBox.Show("The Game has ended", "Game End", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            StartNewGameUI(username,numOfPlayers);
         }
 
         private void AnnounceWinner(object? sender, string e)

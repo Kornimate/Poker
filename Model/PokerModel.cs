@@ -105,7 +105,7 @@ namespace Model
             {
                 if (p.IsActive && p.Money == 0)
                 {
-                    ShowCards();
+                    ShowCards(true);
                     return;
                 }
             });
@@ -202,8 +202,14 @@ namespace Model
             } while (!players[smallBlind].IsActive);
         }
 
-        private void ShowCards()
+        private void ShowCards(bool rapidEnd = false)
         {
+            if (rapidEnd)
+            {
+                Flop?.Invoke(this, EventArgs.Empty);
+                Turn?.Invoke(this, EventArgs.Empty);
+                River?.Invoke(this, EventArgs.Empty);
+            }
             DisableTimer?.Invoke(this, EventArgs.Empty);
             CircleEnded?.Invoke(this, 0);
             var winningOrder = players!.Where(x => x.IsActive).Select(x => new { rating = Dealer.EvaluateCards(Enumerable.Concat(sharedCards!, x.Cards).ToList()!), idx = x.Number }).OrderByDescending(x => (int)x.rating.Item1).ThenByDescending(x => (int)x.rating.Item2).ToList();
@@ -220,6 +226,11 @@ namespace Model
             p.AddMoney(sumMoneyOnTable);
             AnnounceWinner?.Invoke(this, p.Name);
             UpdatePlayer?.Invoke(this, p.Number);
+            if (players[0].Money == 0)
+            {
+                DisableTimer?.Invoke(this, EventArgs.Empty);
+                GameEnd?.Invoke(this, EventArgs.Empty);
+            }
             EnableShowingTimer?.Invoke(this, EventArgs.Empty);
         }
 
